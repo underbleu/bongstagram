@@ -11,12 +11,12 @@ class ImageSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Image
+        model = models.Comment
         fields = '__all__'
 
 
 class LikeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Image
+        model = models.Like
         fields = '__all__'
