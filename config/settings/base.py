@@ -63,9 +63,10 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    'allauth', # registration
+    'allauth.account', # registration
+    'allauth.socialaccount', # registration
+    'rest_framework', # REST framework
 ]
 LOCAL_APPS = [
     'bongstagram.users.apps.UsersConfig',
