@@ -45,5 +45,6 @@ class ImageSerializer(serializers.ModelSerializer):
             'location',
             'caption',
             'comments',
+            'like_count', # property of Image Model
             'creator'
         )
