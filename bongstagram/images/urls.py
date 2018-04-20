@@ -8,4 +8,8 @@ urlpatterns = [
         view=views.Feed.as_view(),
         name="feed"
     ),
+    url(
+        view=views.LikeImage.as_view(),
+        name="like_image"
+    )
 ]
