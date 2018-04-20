@@ -31,18 +31,29 @@ class LikeImage(APIView):
     
     def get(self, request, image_id, format=None):
         
-        user = requset.user
+        user = request.user
         
         try:
             found_image = models.Image.objects.get(id=image_id)
+            
         except models.Image.DoesNotExist:
             return Response(status=404)
         
-        new_like = models.Like.objects.create(
-            creator = user,
-            image = found_image
-        )
-        
-        new_like.save()
+        try: 
+            preexisting_like = models.Like.objects.get(
+                creator=user,
+                image=found_image
+            )
+            preexisting_like.delete() # Unlike
+            
+            return Response(status=204)
+        except models.Like.DoesNotExist:
+            new_like = models.Like.objects.create(
+                creator=user,
+                image=found_image
+            )
+            new_like.save() # Like
+            
+            return Response(status=201)
         
         return Response(status=200)
