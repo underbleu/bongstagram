@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 from . import models, serializers
 
 class Feed(APIView):
@@ -37,7 +38,7 @@ class LikeImage(APIView):
             found_image = models.Image.objects.get(id=image_id)
             
         except models.Image.DoesNotExist:
-            return Response(status=404)
+            return Response(status=status.HTTP_404_NOT_FOUND)
         
         try: 
             preexisting_like = models.Like.objects.get(
@@ -46,7 +47,7 @@ class LikeImage(APIView):
             )
             preexisting_like.delete() # Unlike
             
-            return Response(status=204)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         except models.Like.DoesNotExist:
             new_like = models.Like.objects.create(
                 creator=user,
@@ -54,6 +55,6 @@ class LikeImage(APIView):
             )
             new_like.save() # Like
             
-            return Response(status=201)
+            return Response(status=status.HTTP_201_CREATED)
         
-        return Response(status=200)
+        return Response(status=status.HTTP_200_OK)
