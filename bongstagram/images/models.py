@@ -1,6 +1,6 @@
 from django.db import models
 from bongstagram.users import models as user_models
-
+from taggit.managers import TaggableManager
 
 class TimeStampedModel(models.Model):
 
