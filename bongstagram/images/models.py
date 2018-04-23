@@ -25,12 +25,17 @@ class Image(TimeStampedModel):
         on_delete=models.PROTECT # required in Django 2.0
     )
     
-    @property # Not DB, Just function
-    def like_count(self):
-        return self.likes.all().count() # 'likes': Backward relationship from Image Model
-
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)
+        
+    @property # Not DB, Just function
+    def like_count(self):
+        return self.likes.all().count() # 'likes': Backward relationship from Like Model
+    
+    @property
+    def comment_count(self):
+        return self.comments.all().count()
+        
     
     class Meta:
         ordering = ['-created_at']
