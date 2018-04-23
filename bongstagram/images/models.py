@@ -24,6 +24,7 @@ class Image(TimeStampedModel):
         null=True,
         on_delete=models.PROTECT # required in Django 2.0
     )
+    tags = TaggableManager()
     
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)
