@@ -47,7 +47,7 @@ class Comment(TimeStampedModel):
     """ Comment Model """
 
     message = models.TextField()
-    creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True)
+    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.PROTECT) # Django 2.0 ForeignKey field requires "on_delete" argument
     image = models.ForeignKey(
         Image,
         related_name='comments', # 'comments': Backward relationship to Image Model
