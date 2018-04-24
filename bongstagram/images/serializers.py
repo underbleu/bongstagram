@@ -2,6 +2,17 @@ from rest_framework import serializers
 from . import models
 from bongstagram.users import models as user_model
 
+class SmallImageSerializer(serializers.ModelSerializer):
+    
+    """ Userd for notifications"""
+    
+    class Meta:
+        model = models.Image
+        fields = (
+            'file',
+        )
+
+
 class UserProfileImageSerializer(serializers.ModelSerializer):
     
     class Meta:
