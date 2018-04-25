@@ -24,6 +24,11 @@ urlpatterns = [
         name="comment_image"
     ),
     url(
+        regex=r"^(?P<image_id>\w+)/comments/(?P<comment_id>[0-9]+)/$",
+        view=views.ModerateComment.as_view(),
+        name="moderate_comment"
+    ),
+    url(
         regex=r"^comments/(?P<comment_id>[0-9]+)/$",
         view=views.Comment.as_view(),
         name="comment"
