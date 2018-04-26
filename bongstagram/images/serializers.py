@@ -69,5 +69,17 @@ class ImageSerializer(serializers.ModelSerializer):
             'caption',
             'comments',
             'like_count', # property of Image Model
-            'creator'
+            'creator',
+            'created_at'
+        )
+
+
+class InputImageSerializer(serializers.ModelSerializer):
+    # for Image update
+    class Meta:
+        model = models.Image
+        fields = (
+            'file',
+            'location',
+            'caption',
         )
