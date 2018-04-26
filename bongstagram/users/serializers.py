@@ -5,10 +5,14 @@ from bongstagram.images import serializers as images_serializers
 class UserProfileSerializer(serializers.ModelSerializer):
     
     images = images_serializers.UserProfileImageSerializer(many=True)
+    post_count = serializers.ReadOnlyField()
+    followers_count = serializers.ReadOnlyField()
+    following_count = serializers.ReadOnlyField()
     
     class Meta:
         model = models.User
         fields = (
+            'profile_image',
             'username',
             'name',
             'bio',
@@ -16,7 +20,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'post_count',
             'followers_count',
             'following_count',
-            'images'
+            'images',
         )
 
 class ListUserSerializer(serializers.ModelSerializer):
