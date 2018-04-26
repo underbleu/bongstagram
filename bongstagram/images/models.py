@@ -22,7 +22,7 @@ class Image(TimeStampedModel):
         user_models.User, # Create relationship between User and Image
         related_name='images', # Create backward relationship to User
         null=True,
-        on_delete=models.PROTECT # required in Django 2.0
+        on_delete=models.CASCADE # required in Django 2.0
     )
     tags = TaggableManager()
     
@@ -47,12 +47,12 @@ class Comment(TimeStampedModel):
     """ Comment Model """
 
     message = models.TextField()
-    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.PROTECT) # Django 2.0 ForeignKey field requires "on_delete" argument
+    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE) # Django 2.0 ForeignKey field requires "on_delete" argument
     image = models.ForeignKey(
         Image,
         related_name='comments', # 'comments': Backward relationship to Image Model
         null=True, 
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
     )
     
     def __str__(self):
@@ -66,12 +66,12 @@ class Like(TimeStampedModel):
 
     """ Like Model """
 
-    creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True)
+    creator = models.ForeignKey(user_models.User, on_delete=models.CASCADE, null=True)
     image = models.ForeignKey(
         Image, 
         related_name='likes', # 'likes': Backward relationship to Image Model
         null=True, 
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
     )
     
     def __str__(self):
