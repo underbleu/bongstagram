@@ -241,4 +241,13 @@ SOCIALACCOUNT_ADAPTER = 'bongstagram.users.adapters.SocialAccountAdapter'
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-TAGGIT_CASE_INSENSITIVE = True
+TAGGIT_CASE_INSENSITIVE = TrueREST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', # 모든 api를 비공개로 변경
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
