@@ -13,7 +13,7 @@ urlpatterns = [
     # User management
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    # url(r'^api-token-auth/', obtain_jwt_token),
+    # url(r'^api-token-auth/', obtain_jwt_token), # 충돌방지를위해 삭제
     url(r"^users/", include("bongstagram.users.urls", namespace="users")),
     url(r"^images/", include("bongstagram.images.urls", namespace="images")),
     url(r"^notifications/", include("bongstagram.notifications.urls", namespace="notifications")),
