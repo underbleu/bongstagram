@@ -6,7 +6,7 @@ from bongstagram.users import models as user_models
 from bongstagram.users import serializers as user_serializers
 from bongstagram.notifications import views as notification_views
 
-class Feed(APIView):
+class Images(APIView):
     
     def get(self, request, format=None):
         

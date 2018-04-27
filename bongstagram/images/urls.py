@@ -5,8 +5,8 @@ app_name = "images" # Django 2.0 need it.
 urlpatterns = [
     url(
         regex=r"^$",
-        view=views.Feed.as_view(),
-        name="feed"
+        view=views.Images.as_view(),
+        name="images"
     ),
     url(
         regex=r"^(?P<image_id>\w+)/$",
