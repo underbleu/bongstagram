@@ -1,10 +1,12 @@
 from rest_framework import serializers
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
 from . import models
 from bongstagram.users import models as user_model
 
 class SmallImageSerializer(serializers.ModelSerializer):
     
-    """ Userd for notifications"""
+    """ Used for notifications"""
     
     class Meta:
         model = models.Image
@@ -55,10 +57,11 @@ class LikeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ImageSerializer(serializers.ModelSerializer):
+class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
     
     comments = CommentSerializer(many=True) # comments: backward relationship from Comment Model
     creator = FeedUserSerializer()
+    tags = TagListSerializerField()
     
     class Meta:
         model = models.Image
@@ -70,7 +73,8 @@ class ImageSerializer(serializers.ModelSerializer):
             'comments',
             'like_count', # property of Image Model
             'creator',
-            'created_at'
+            'tags',
+            'created_at',
         )
 
 

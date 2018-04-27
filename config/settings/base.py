@@ -68,6 +68,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount', # registration
     'rest_framework', # REST framework
     'taggit', # Tags for the photos
+    'taggit_serializer', # Tag Serializer
 ]
 LOCAL_APPS = [
     'bongstagram.users.apps.UsersConfig',
@@ -241,7 +242,9 @@ SOCIALACCOUNT_ADAPTER = 'bongstagram.users.adapters.SocialAccountAdapter'
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-TAGGIT_CASE_INSENSITIVE = TrueREST_FRAMEWORK = {
+TAGGIT_CASE_INSENSITIVE = True
+
+REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated', # 모든 api를 비공개로 변경
     ),
