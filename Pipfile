@@ -37,6 +37,7 @@ factory_boy = "==2.10.0"
 django-taggit = "*"
 djangorestframework-jwt = "*"
 django-taggit-serializer = "*"
+django-rest-auth = "*"
 
 [requires]
 python_version = "3.5"
