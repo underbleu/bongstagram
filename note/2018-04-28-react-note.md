@@ -36,25 +36,40 @@ module.exports = {
 };
 ```
 
+개발용으로만 필요하기 때문에 dev-dependencies에 설치
+```bash
+$ yarn add webpack --dev
+$ yarn add babel babel-core babel-loader babel-preset-es2015 --dev
+$ webpack # old코드로 변환 실행 !
+```
+
 ---
 
-## Create React App
+## # 2-4 Create React App
+
+### Create React App이란?  
+일종의 configuration base. 쿠키커터와 유사하다
 
 ```bash
 $ yarn global add create-react-app
 $ create-react-app frontend
 $ cd frontend
-$ yarn start
+$ yarn start # 서버 작동
 ```
 
-### eject   
-* create-react-app의 기본설정(default configuration)에선 CSS모듈과 Sass를 쓸 수 없다 -> `$ yarn eject`로 full-control할 수 있게 만들어줘야함!
-* 한 번 eject하면 되돌아갈 수 없다 !
+## # eject  
+* create-react-app의 기본설정(default configuration)에선 CSS모듈과 Sass를 쓸 수 없다  
+-> `$ yarn eject`로 커스터마이징 할 수 있게 만들어줘야함!
 * eject를 하면 package.json에 많은 dependencies들이 생겨남
+* 한 번 eject하면 되돌아갈 수 없다 !
 
 ```bash
 $ yarn eject
 ```
+
+* 불필요파일 삭제  
+  * config / jest폴더
+  * scripts / test~~ 파일모두
 
 ---
 

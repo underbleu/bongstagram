@@ -1,4 +1,4 @@
-
+# # Django: Backend
 ## Framework vs Library
 > A library is a tool, A frame work is a way of life
 
@@ -50,7 +50,7 @@ production-ready-size
 `$ django-admin startproject [project-name]`
 
 ## 2. Cookiecutter에서 제공하는 뼈대로 프로젝트 생성하기  
-Django 프로젝트를 빨리 시작할 수 있도록 미리 만들어진 앱의 구조  
+Django 프로젝트를 빨리 시작할 수 있도록 미리 만들어진 앱의 구조 (Create React App과 비슷)  
 
 >* global에 모듈을 설치하려면 `pip`
 >* 버블(가상환경)에 설치하려면 `pipenv`
@@ -199,6 +199,17 @@ ORM (Object-relational mappers)
 * Data를 validation하여 제한해줌
 * [Model field reference](https://docs.djangoproject.com/es/1.10/ref/models/fields/#field-types)
 
+## Field Type
+* BooleanField
+* DateField
+* EmailField
+* FileField
+* URLField
+## Relation Fields
+* ForeignKey
+* ManyToManyField
+
+
 CharField | TextField
 --- | ---
 short text | long text
@@ -212,7 +223,8 @@ class Cat(models.Model):
     name = models.CharField(max_length=30) # name의 max_length를 30글자로 제한
 ```
 
-## Model Operation
+## Query Sets
+### Model Operation
 * All Cats
     * create()
     * get()
@@ -222,7 +234,8 @@ class Cat(models.Model):
     * save()
     * delete()
 
-## Lookup Options
+
+### Lookup Options
 * startwith
 * contains
 * istartwith (대/소문자 구분X)
@@ -231,6 +244,9 @@ class Cat(models.Model):
 * gt (greater than)  
 ...
 
+```py
+images = models.Image.objects.filter(name__contains='blabla')
+```
 ---
 
 # # 1-17. Migrating
@@ -253,7 +269,8 @@ $ python manage.py runserver
 `$ python manage.py createsuperuser`
 
 2. default로 만들어진 User 클래스에 부족한 정보칼럼을 추가
-    * AbstractUser (has fields such as 'username', 'email', 'first_name', 'last_name' that we extend)
+    * AbstractUser  
+    : has fields such as 'username', 'email', 'first_name', 'last_name' that we extend
     ```python
     # users/models.py
     class User(AbstractUser):
@@ -301,7 +318,7 @@ class TimeStampedModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        abstract = True # AbstractModel로 설정
+        abstract = True # 다른 모델들을 위한 base (DB에 저장X)
 
 class Image(TimeStampedModel):
 
@@ -331,7 +348,7 @@ class Cat(models.Model):
 ```
 
 ## _set 속성
-* 관련된 모든 object들을 그룹화하는 속성
+* relation이 있는 모든 object들을 그룹화하는 속성
 * `모델이름_set`으로 호출
 * DB에 칼럼생성 X
 ```python
@@ -389,11 +406,11 @@ ModelAdmin class를 등록하기 위한 데코레이터
 from django.contrib import admin
 from . import models
 
+# Image Model 속성을 가지고있는 ImageAdmin class를 등록
 @admin.register(models.Image)
 class ImageAdmin(admin.ModelAdmin):
     pass
 ```
-Image Model 속성을 가지고있는 ImageAdmin class를 등록
 
 ---
 # #1-25 Customizing the Django Admin
@@ -402,9 +419,8 @@ Image Model 속성을 가지고있는 ImageAdmin class를 등록
 string representation. 텍스트를 어떻게 보이게할 지 설정하는 메소드
 
 * 파일명 -> "location-caption" 으로 표시해줌  
-ex. `screenshot02.png` -> `Seoul - Capital of Korea`
+ex. `screenshot02.png` -> `Gangnam - South of Seoul`
 
-# repersent  (ex. Gangnam - South of Seoul)
 ```python
 # images/models.py
 
