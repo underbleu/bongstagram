@@ -73,6 +73,7 @@ THIRD_PARTY_APPS = [
     'taggit_serializer', # Tag Serializer
     'rest_auth', # rest_auth
     'rest_auth.registration', # enable registration
+    'corsheaders', # To accept requests from React
 ]
 LOCAL_APPS = [
     'bongstagram.users.apps.UsersConfig',
@@ -134,6 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -251,3 +253,7 @@ REST_FRAMEWORK = {
 
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
+
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+CORS_ORIGIN_ALLOW_ALL = True
