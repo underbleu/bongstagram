@@ -33,9 +33,13 @@ class LikeImage(APIView):
         
         return Response(status=200)
 ```
+* URLConf 정규표현식 매핑
+    * `(?P)` : 이 영역의 문자열에 정규표현식을 적용해서
+    * `\w+` : \w+ 패턴에 부합된다면
+    * `<image_id>` : image_id 라는 변수명으로 인자를 `view.LikeImage`로 넘기겠다.
 
 >[정규표현식 학습](https://regexone.com/)  
->[Test Regular Expressions](https://regex101.com/)
+>[Test Regular Expressions](https?P<username>\w+://regex101.com/)
 
 ---
 

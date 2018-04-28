@@ -371,9 +371,10 @@ from django.db import models
 from bongstagram.users import models as user_models # 닉네임생성 
 
 class Like(TimeStampedModel):
-
-    creator = models.ForeignKey(user_models.User, on_delete=models.PROTECT, null=True)
-    image = models.ForeignKey(Image, on_delete=models.PROTECT, null=True)
+    
+    # Django 2.0 ForeignKey field requires "on_delete" argument
+    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.PROTECT)
+    image = models.ForeignKey(Image, null=True, on_delete=models.PROTECT)
 ```
 
 ---
