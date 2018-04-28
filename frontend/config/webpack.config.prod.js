@@ -177,6 +177,8 @@ module.exports = {
                       options: {
                         importLoaders: 1,
                         minimize: true,
+                        modules: true,
+                        localIdentName: "[path][name]__[local]--[hash:base64:5]", // 클래스명 커스터마이징
                         sourceMap: shouldUseSourceMap
                       }
                     },

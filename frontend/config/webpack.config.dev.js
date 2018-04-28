@@ -164,6 +164,8 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
+                  modules: true, // CSS 모듈
+                  localIdentName: "[path][name]__[local]--[hash:base64:5]" // 클래스명 커스터마이징
                 },
               },
               {
