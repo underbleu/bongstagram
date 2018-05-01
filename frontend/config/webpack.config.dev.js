@@ -165,7 +165,8 @@ module.exports = {
                 options: {
                   importLoaders: 1,
                   modules: true, // CSS 모듈
-                  localIdentName: "[path][name]__[local]--[hash:base64:5]" // 클래스명 커스터마이징
+                  localIdentName: "[path][name]__[local]--[hash:base64:5]", // 클래스명 커스터마이징
+                  camelCase: "dashes" // JS-CSS 클래스명
                 },
               },
               {
@@ -193,7 +194,8 @@ module.exports = {
                 loader: require.resolve("sass-loader"),
                 options: {
                   sourceMap: true,
-                  data: `@import "${path.appSrc})/config/_variables.scss";`
+                  data: `@import "C:/Users/bong/Desktop/bongstagram/frontend/src/config/_variables.scss";`
+                  // data: `@import "${paths.appSrc})/config/_variables.scss";`
                 }
               }
             ],
