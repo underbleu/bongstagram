@@ -1,0 +1,29 @@
+.footer{
+  max-width: $max-page-width;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: $small-font;
+  font-weight: 600;
+  text-transform: uppercase;
+  .column{
+    .nav{
+      .list{
+        display: flex;
+        flex-wrap: wrap;
+        .list-item{
+          color: $dark-blue;
+          margin-right: 16px;
+          margin-bottom: 7px;
+        }
+        .list-item:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+    .copyright{
+      color: $dark-grey;
+    }
+  }
+}
