@@ -206,7 +206,8 @@ module.exports = {
                     {
                       loader: require.resolve("sass-loader"), // sass-loader 추가 !!
                       options: {
-                        sourseMap: true
+                        sourseMap: true,
+                        data: `@import "${paths.appSrc}/config/_variables.scss";`
                       }
                     }
                   ]
