@@ -12,11 +12,21 @@
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
+    @include breakpoint(laptop) {
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 0;
+    }
     .nav{
       .list{
         display: flex;
         flex-wrap: wrap;
         margin: 0 auto;
+        @include breakpoint(laptop) {
+          max-width: 360px;
+          justify-content: center;
+          margin-bottom: 5px;
+        }
         .list-item{
           color: $dark-blue;
           margin-right: 16px;
@@ -27,6 +37,9 @@
     }
     .copyright{
       color: $dark-grey;
+      @include breakpoint(laptop) {
+        text-align: center;
+      }
     }
   }
 }
