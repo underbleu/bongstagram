@@ -1,24 +1,27 @@
 .footer{
-  max-width: $max-page-width;
   width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  font-size: $small-font;
+  padding: 0 20px;
+  font-size: $small-font-size;
   font-weight: 600;
   text-transform: uppercase;
-  .column{
+  .wrapper{
+    max-width: $max-page-width;
+    padding: 38px 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
     .nav{
       .list{
         display: flex;
         flex-wrap: wrap;
+        margin: 0 auto;
         .list-item{
           color: $dark-blue;
           margin-right: 16px;
-          margin-bottom: 7px;
-        }
-        .list-item:last-child{
-          margin-right: 0;
+          margin-bottom: 10px;
+          cursor: pointer;
         }
       }
     }
