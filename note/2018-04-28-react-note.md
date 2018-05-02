@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 강의노트. React 이론
+title: 강의노트. Webpack설정, React 이론
 category: react
 permalink: /react/:title
 
@@ -14,9 +14,11 @@ comments: true
 프로젝트의 여러파일들의 코드를 하나의 js css html파일로 변환시키는 도구
 1. entry: 웹팩이 어디서부터 코드를 변환시킬지 (여러개파일)
 2. output: 변환된 코드를 어디에 놓을지 (결과물은 단 하나)
-3. loader: 웹팩이 각각의 파일을 어떻게 변환할지 -> 하나의 파일 (scss로더, js로더...)
+3. module: webpack을 통해 bundling을 진행할 때 처리해야 하는 task들
+    * module.rules: 각종 loader들을 등록
+    * loader: 웹팩이 각각의 파일을 어떻게 변환할지 -> 하나의 파일 (scss로더, js로더...)
 4. plugins: 로더가 변환시켜 놓은 각각의 파일을 마지막에 전체적으로 어떻게 변환할지  
-*ex. 전체코드를 uglify시킴*
+*ex. 코드를 압축하여 난독화시켜주는 플러그인 uglify*
 
 > Multiple Entries & One Output  
 ES6로 코드를 작성하고, 웹팩을 이용해 브라우저가 이해할 수 있도록 "ES6 -> old JS"로 변환한 bundle.js파일을 만들어서 플러그인으로 uglify하여 최종 압축한다
@@ -29,7 +31,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 module.exports = {
   entry: "./index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist"), // __dirname: 절대경로
     filename: "bundle.js"
   },
   module: {
@@ -92,6 +94,10 @@ $ yarn add sass-loader node-sass
 
 ### 2. 웹팩에 scss파일 컴파일하도록 설정  
 config / webpack.config.dev.js와 webpack.config.prod.js에 코드추가 
+
+* `sourceMap: true`  
+SourceMaps는 웹팩이 하나의 파일로 압축해놓은 js, css파일을 path 구조까지 고려하여 원형으로 복원해주는 기술이다. 따라서 bundle된 코드에서 에러가 발생했을 때 어느부분에서 발생했는지 기존의 코드와 연결시켜주어 쉽게 디버깅할 수 있게 해준다
+    >"A source map provides a way of mapping code within a compressed file back to it’s original position in a source file."
 
 ```js
 // webpack.config.dev.js (개발용)
