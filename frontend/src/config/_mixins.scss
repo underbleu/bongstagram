@@ -25,3 +25,11 @@
     }
   }
 }
+
+@mixin borderBox($radius){
+  background-color: #fff;
+  border: 1px solid $border-color;
+  @if $radius == yes {
+    border-radius: 5px;
+  }
+}
