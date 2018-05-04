@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
+import Auth from "components/Auth";
 
 const App = props => [
   // 1. Nav
@@ -25,7 +26,7 @@ const PrivateRoutes = props => (
 
 const PublicRoutes = props => (
   <Switch>
-    <Route path="/login" render={() => "login"} />
+    <Route path="/" component={Auth} />
     <Route path="/forget" render={() => "password"} />
   </Switch>
 );
