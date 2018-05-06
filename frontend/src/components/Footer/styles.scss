@@ -1,10 +1,10 @@
-.footer{
+.footer {
   width: 100%;
   padding: 0 20px;
   font-size: $small-font-size;
   font-weight: 600;
   text-transform: uppercase;
-  .wrapper{
+  .wrapper {
     max-width: $max-page-width;
     padding: 38px 0;
     margin: 0 auto;
@@ -12,34 +12,36 @@
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-    @include breakpoint(laptop) {
+    @include breakpoint("phone-tablet") {
       flex-direction: column;
       justify-content: center;
       padding: 10px 0;
     }
-    .nav{
-      .list{
+    .nav {
+      .list {
         display: flex;
         flex-wrap: wrap;
         margin: 0 auto;
-        @include breakpoint(laptop) {
+        @include breakpoint("phone-tablet") {
           max-width: 360px;
           justify-content: center;
-          margin-bottom: 5px;
         }
-        .list-item{
+        .list-item {
           color: $dark-blue;
           margin-right: 16px;
           margin-bottom: 10px;
           cursor: pointer;
+          &:last-child {
+            @include breakpoint("phone-tablet") {
+              margin-right: 0;
+            }
+          }
         }
       }
     }
-    .copyright{
+    .copyright {
       color: $dark-grey;
-      @include breakpoint(laptop) {
-        text-align: center;
-      }
+      text-align: center;
     }
   }
 }
