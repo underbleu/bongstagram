@@ -17,26 +17,22 @@ const Auth = (props, context) => (
           <h1 className={styles.authHeading}>Bongstagram</h1>
         </div>
         <div className={styles.whiteBox}>
-          {(() => {
-            switch (props.action) {
-              case "login":
-                return (
-                  <p>
-                    Don't have an account?{" "}
-                    <span className={styles.changeLink} onClick={props.changeAction}>Sign up</span>
-                  </p>
-                );
-              case "signup":
-                return (
-                  <p>
-                    Have an account?{" "}
-                    <span className={styles.changeLink} onClick={props.changeAction}>Login</span>
-                  </p>
-                );
-              default:
-                return null;
-            }
-          })()}
+          {props.action === "login" && (
+            <p className={styles.text}>
+              Don't have an account?{" "}
+              <span className={styles.changeLink} onClick={props.changeAction}>
+                Sign up
+              </span>
+            </p>
+          )}
+          {props.action === "signup" && (
+            <p className={styles.text}>
+              Have an account?{" "}
+              <span className={styles.changeLink} onClick={props.changeAction}>
+                Login
+              </span>
+            </p>
+          )}
         </div>
         <div className={styles.appBox}>
           <p>Get the app.</p>
