@@ -1,0 +1,68 @@
+.form-component {
+  display: flex;
+  flex-direction: column;
+  .signup-heading {
+    margin: 0 40px 10px;
+    color: $dark-grey;
+    font-size: $large-font-size;
+    font-weight: 600;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    .text-input {
+      background-color: $bg-color;
+      border: 1px solid $input-border-color;
+      margin: 0 40px 6px;
+      padding: 9px 0 7px 8px;
+      &::placeholder {
+        font-size: $small-font-size;
+        color: $dark-grey;
+      }
+    }
+  }
+  .button {
+    @include blueButton() {
+      margin: 8px 40px;
+    }
+    svg {
+      margin: 0 5px -4.5px 0;
+    }
+  }
+  .divider {
+    position: relative;
+    margin: 10px 40px 18px;
+    text-transform: uppercase;
+    color: $dark-grey;
+    font-size: $small-font-size;
+    font-weight: 600;
+    &::before {
+      content: "";
+      @include divider(left);
+    }
+    &::after {
+      content: "";
+      @include divider(right);
+    }
+  }
+  .facebook-link {
+    margin-bottom: 6px;
+    cursor: pointer;
+    svg {
+      margin: 0 5px -4.5px 0;
+    }
+  }
+  .forgot-link {
+    font-size: $small-font-size;
+    color: #003569;
+    margin: 12px 0;
+    cursor: pointer;
+  }
+  .terms {
+    color: $dark-grey;
+    .new-line { display: block; }
+    span {
+      font-weight: 600;
+    }
+  }
+}
