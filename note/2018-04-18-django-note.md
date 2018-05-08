@@ -11,7 +11,7 @@ class CommentSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = models.Comment
-        fields = '__all__'
+        fields = '__all__' # 시리얼라이징 된 image 반영
 ```
 
 ---
@@ -39,11 +39,13 @@ class CommentSerializer(serializers.ModelSerializer):
 * `HttpRequest.content_type`: https
 * `HttpRequest.Content_Type`: http
 
-# #1-38 Making Queries
->[Making Queries on Django](https://docs.djangoproject.com/en/1.11/topics/db/queries/)  
->[QuerySet (list of objects) Reference](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)
+---
 
-## Model클래스의 QuerySet [문서](https://docs.djangoproject.com/en/2.0/ref/models/querysets/)  
+# #1-38 Making Queries
+>-[Making Queries on Django](https://docs.djangoproject.com/en/1.11/topics/db/queries/)  
+>-[QuerySet (list of objects) Reference](https://docs.djangoproject.com/en/1.11/ref/models/querysets/)
+
+## Model클래스의 QuerySet
 * 문법: `Model.objects.all()`  
 * 유용한 메서드: `filter() order_by() value() all()`...
 

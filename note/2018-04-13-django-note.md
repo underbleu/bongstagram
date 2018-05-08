@@ -47,7 +47,9 @@
 production-ready-size
 
 ## 1. 장고 기본 구성으로 프로젝트 생성하기 (심플)  
-`$ django-admin startproject [project-name]`
+```
+$ django-admin startproject [project-name]
+```
 
 ## 2. Cookiecutter에서 제공하는 뼈대로 프로젝트 생성하기  
 Django 프로젝트를 빨리 시작할 수 있도록 미리 만들어진 앱의 구조 (Create React App과 비슷)  
@@ -314,8 +316,8 @@ from django.db import models
 
 class TimeStampedModel(models.Model):
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True) # 자동 저장
+    updated_at = models.DateTimeField(auto_now=True) # 자동 저장
     
     class Meta:
         abstract = True # 다른 모델들을 위한 base (DB에 저장X)
@@ -395,6 +397,7 @@ class Like(TimeStampedModel):
 ```
 
 ---
+
 # #1-24 Registering the Models in the admin
 
 ## `@` 데코레이터
@@ -413,12 +416,13 @@ class ImageAdmin(admin.ModelAdmin):
 ```
 
 ---
+
 # #1-25 Customizing the Django Admin
 
 ## `__str__`
 string representation. 텍스트를 어떻게 보이게할 지 설정하는 메소드
 
-* 파일명 -> "location-caption" 으로 표시해줌  
+* 파일명 -> "location-caption" 으로 표시해주기  
 ex. `screenshot02.png` -> `Gangnam - South of Seoul`
 
 ```python
@@ -491,6 +495,8 @@ HTTP (HyperText Transfer Protocol): HyperText를 전달하는 프로토콜
 
 * Server - Response  
 Request의 Method에 따라 응답함
+
+---
 
 # # 1-26 REST API
 

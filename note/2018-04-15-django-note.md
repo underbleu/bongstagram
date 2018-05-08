@@ -26,6 +26,7 @@
 `$ django-admin`
 
 ---
+
 # #1-5. Parts of Django
 
 ## 1. Settings
@@ -42,12 +43,13 @@
 ---
 
 # #1-6. Creating our Django Project
-
-production-ready-size  
+* Production-ready-size  
 장고 프로젝트를 생성할때 크기가 너무 커지지않게 고려해야한다.
 
 ## 1. 장고 기본 구성으로 프로젝트 생성하기 (심플)  
-`$ django-admin startproject [project-name]`
+```
+$ django-admin startproject [project-name]
+```
 
 ## 2. Cookiecutter에서 제공하는 뼈대로 프로젝트 생성하기  
 Django 프로젝트를 빨리 시작할 수 있도록 미리 만들어진 앱의 구조  

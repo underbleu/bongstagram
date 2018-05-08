@@ -1,17 +1,20 @@
-# #1-29 Django Rest Framework Installation and Basic Concepts
+# # 1-29 Django Rest Framework
 
-## # REST Framework
+## REST Framework
 > [공식문서](http://www.django-rest-framework.org/)
 
 Web API를 만들기 위한 강력한 툴킷. 많은 종류의 class, funtion, python패키지를 가지고 있다. 
 
 * 장고가 가지고 있는 기본객체들의 확장판이라고 볼 수 있다  
 (확장판일뿐, 두개는 다른 것이다!!!)
-    * `HttpRequest` -> `Request` 
-    * `HttpReponse` -> `Response`
-    * `View` -> `APIView`
 
-### # 설치
+    장고기본 Web API | REST Framework
+    --- | ---
+    `HttpRequest` | `Request` 
+    `HttpReponse` | `Response`
+    `View` | `APIView`
+
+## 설치
 1. `$ pipenv install djangorestframework`  
 2. 설치후 THIRD_PARTY_APPS에 추가
     ```python 
@@ -21,22 +24,22 @@ Web API를 만들기 위한 강력한 툴킷. 많은 종류의 class, funtion, p
         'allauth',
         'allauth.account',
         'allauth.socialaccount',
-        'rest_framework', # REST framework
+        'rest_framework', # 추가
     ]
     ```
 
-### # 기능
+## 기능
 * Web browsable API
 * Authentication policies (OAuth1, OAuth2)
 * Serializer  
-장고/파이썬 월드와 자바스크립트 월드를 연결하는 다리.
+장고월드(파이썬)와 리액트월드(자바스크립트)를 연결하는 다리.
     * 파이썬 <-> json 오브젝트를 변환시켜준다.
-    * 백엔드 Django | 파이썬 오브젝트 (Respond)
-    * 프론트엔드 React | json 오브젝트 (Request)
+    * 백엔드 Django: 파이썬 오브젝트 (Respond)
+    * 프론트엔드 React: json 오브젝트 (Request)
 
 ---
 
-# #1-30 ~ 32 Image Serializers, View, Url
+# #1-30~32 Image Serializers, View, Url
 
 >작업순서
 >1. 시리얼라이저 생성

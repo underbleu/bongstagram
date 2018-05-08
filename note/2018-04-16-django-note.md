@@ -220,6 +220,8 @@ HTTP (HyperText Transfer Protocol): HyperText를 전달하는 프로토콜
 * Server - Response  
 Request의 Method에 따라 응답함
 
+---
+
 # # 1-26 REST API
 
 > [RESTful API Designing guidelines ](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)
