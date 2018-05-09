@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Language: ko"
+
+#: src/components/Footer/index.js
+msgid "About Us"
+msgstr "BONGSTAGRAM정보"
+
+#: src/components/Footer/index.js
+msgid "Support"
+msgstr "지원"
+
+#: src/components/Footer/index.js
+msgid "Blog"
+msgstr "블로그"
+
+#: src/components/Footer/index.js
+msgid "Press"
+msgstr "홍보 센터"
+
+#: src/components/Footer/index.js
+msgid "API"
+msgstr "API"
+
+#: src/components/Footer/index.js
+msgid "Jobs"
+msgstr "채용"
+
+#: src/components/Footer/index.js
+msgid "Privacy"
+msgstr "개인정보처리방침"
+
+#: src/components/Footer/index.js
+msgid "Terms"
+msgstr "약관"
+
+#: src/components/Footer/index.js
+msgid "Directory"
+msgstr "디렉터리"
+
+#: src/components/Footer/index.js
+msgid "Profiles"
+msgstr "프로필"
+
+#: src/components/Footer/index.js
+msgid "Hashtags"
+msgstr "해시태그"
+
+#: src/components/Footer/index.js
+msgid "Language"
+msgstr "언어"
+
