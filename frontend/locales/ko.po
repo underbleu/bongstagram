@@ -50,3 +50,27 @@ msgstr "해시태그"
 msgid "Language"
 msgstr "언어"
 
+#: src/components/LoginForm/presenter.js
+msgid "Username"
+msgstr "사용자 이름 또는 이메일"
+
+#: src/components/LoginForm/presenter.js
+msgid "Password"
+msgstr "비밀번호"
+
+#: src/components/LoginForm/presenter.js
+msgid "Log in"
+msgstr "로그인"
+
+#: src/components/LoginForm/presenter.js
+msgid "or"
+msgstr "또는"
+
+#: src/components/LoginForm/presenter.js
+msgid "Log in with Facebook"
+msgstr "Facebook으로 로그인"
+
+#: src/components/LoginForm/presenter.js
+msgid "Forgot password?"
+msgstr "비밀번호를 잊으셨나요?"
+

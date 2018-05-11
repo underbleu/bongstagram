@@ -12,6 +12,12 @@ export const translations = {
     'Profiles': '프로필',
     'Hashtags': '해시태그',
     'Language': '언어',
+    'Username': '사용자 이름 또는 이메일',
+    'Password': '비밀번호',
+    'Log in': '로그인',
+    'or': '또는',
+    'Log in with Facebook': 'Facebook으로 로그인',
+    'Forgot password?': '비밀번호를 잊으셨나요?',
   },
   'options': {
   },
