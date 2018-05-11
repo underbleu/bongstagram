@@ -10,19 +10,19 @@ const LoginForm = (props, context) => (
         name="username"
         value={props.usernameValue}
         onChange={props.handleInputChange}
-        placeholder={context.t("Username")}
+        placeholder={context.t("Phone number, username, or email")}
         className={formStyles.textInput}
-        required="true"
-      />
+        required="true"/>
       <input type="password"
         name="password"
         value={props.passwordValue}
         onChange={props.handleInputChange}
         placeholder={context.t("Password")}
         className={formStyles.textInput}
-        required="true"
-      />
-      <input type="submit" value={context.t("Log in")} className={formStyles.button} />
+        required="true"/>
+      <input type="submit"
+        value={context.t("Log in")}
+        className={formStyles.button} />
     </form>
       <span className={formStyles.divider}>{context.t("or")}</span>
       <span className={formStyles.facebookLink}>
