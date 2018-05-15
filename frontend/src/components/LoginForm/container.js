@@ -9,7 +9,8 @@ class Container extends Component {
   }
   
   static propTypes = {
-    facebookLogin: PropTypes.func.isRequired
+    facebookLogin: PropTypes.func.isRequired,
+    usernameLogin: PropTypes.func.isRequired
   }
   
   render() {
@@ -32,7 +33,10 @@ class Container extends Component {
   }
   
   _handleSubmit = event => {
+    const { usernameLogin } = this.props;
+    const { username, password } = this.state;
     event.preventDefault(); // form의 디폴트 이벤트 막기(username, password를 url에 표시하지 않도록)
+    usernameLogin(username, password);
     console.log(this.state);
   }
   
