@@ -2,6 +2,27 @@ msgid ""
 msgstr ""
 "Language: ko"
 
+#: src/components/Auth/presenter.js
+msgid "Don't have an account"
+msgstr "계정이 없으신가요"
+
+#: src/components/Auth/presenter.js
+#: src/components/SignupForm/presenter.js
+msgid "Sign up"
+msgstr "가입하기"
+
+#: src/components/Auth/presenter.js
+msgid "Have an account"
+msgstr "계정이 있으신가요"
+
+#: src/components/Auth/presenter.js
+msgid "Login"
+msgstr "로그인"
+
+#: src/components/Auth/presenter.js
+msgid "Get the app"
+msgstr "앱을 다운로드하세요"
+
 #: src/components/Footer/index.js
 msgid "About Us"
 msgstr "BONGSTAGRAM정보"
@@ -109,3 +130,4 @@ msgstr "및"
 #: src/components/SignupForm/presenter.js
 msgid "Privacy Policy"
 msgstr "개인정보처리방침"
+

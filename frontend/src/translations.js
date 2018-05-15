@@ -1,5 +1,10 @@
 export const translations = {
   'ko': {
+    'Don\'t have an account': '계정이 없으신가요',
+    'Sign up': '가입',
+    'Have an account': '계정이 있으신가요',
+    'Login': '로그인',
+    'Get the app': '앱을 다운로드하세요',
     'About Us': 'BONGSTAGRAM정보',
     'Support': '지원',
     'Blog': '블로그',
@@ -22,7 +27,6 @@ export const translations = {
     'Mobile Number or Email': '휴대폰 번호 또는 이메일 주소',
     'Full Name': '성명',
     'Username': '사용자 이름',
-    'Sign up': '가입',
     'By signing up, you agree to our': '가입하면 Instagram에 동의하게 됩니다',
     '&amp;': '및',
     'Privacy Policy': '개인정보처리방침',
