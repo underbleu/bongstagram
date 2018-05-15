@@ -208,7 +208,8 @@ module.exports = {
                       loader: require.resolve("sass-loader"), // sass-loader 추가 !!
                       options: {
                         sourseMap: true,
-                        data: `@import "${paths.appSrc}/config/_variables.scss";`
+                        data: `@import "C:/Users/bong/Desktop/bongstagram/frontend/src/config/_variables.scss";`
+                        // data: `@import "${paths.appSrc}/config/_variables.scss";`
                       }
                     }
                   ]
