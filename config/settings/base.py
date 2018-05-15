@@ -11,8 +11,13 @@ env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
 if READ_DOT_ENV_FILE:
-    # OS environment variables take precedence over variables from .env
-    env.read_env(str(ROOT_DIR.path('.env')))
+    # Operating System Environment variables have precedence over variables defined in the .env file,
+    # that is to say variables from the .env files will only be used if not defined
+    # as environment variables.
+    env_file = str(ROOT_DIR.path('.env'))
+    print('Loading : {}'.format(env_file))
+    env.read_env(env_file)
+    print('The .env file has been loaded. See base.py for more information')
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -227,6 +232,8 @@ ADMINS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
+# SLUGLIFIER
+AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 # django-allauth
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
@@ -254,11 +261,44 @@ REST_FRAMEWORK = {
 
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
-
 SOCIALACCOUNT_QUERY_EMAIL = True
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 JWT_TOKEN = {
     'JWT_VERIFY_EXPIRATION': False
+}
+
+SOCIALACCOUNT_PROVIDERS = {  
+    'facebook': {  
+        'SCOPE': [  
+            'email',  
+            'public_profile',  
+            'user_friends'  
+        ],  
+        'FIELDS': [  
+            'id',  
+            'email',  
+            'name',  
+            'first_name',  
+            'last_name',  
+            'verified',
+            'locale',  
+            'timezone',  
+            'link',  
+            'gender',  
+            'updated_time',
+            'picture' 
+        ],  
+        'AUTH_PARAMS': {  
+            #'auth_type': 'reauthenticate'  
+        },  
+        'METHOD': 'oauth2',  
+        #'LOCALE_FUNC': 'path.to.callable',  
+        'VERIFIED_EMAIL': True,  
+        'VERSION': 'v2.4'  
+    }
+}  
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'bongstagram.users.serializers.SignUpSerializer'
 }
