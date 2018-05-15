@@ -3622,6 +3622,12 @@ import-local@^0.1.1:
     pkg-dir "^2.0.0"
     resolve-cwd "^2.0.0"
 
+import@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/import/-/import-0.0.6.tgz#d0eb79df86aa2677c6db61578a5212b3031e6042"
+  dependencies:
+    optimist "0.3.x"
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
@@ -5228,6 +5234,12 @@ opn@^5.1.0:
   dependencies:
     is-wsl "^1.1.0"
 
+optimist@0.3.x:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.3.7.tgz#c90941ad59e4273328923074d2cf2e7cbc6ec0d9"
+  dependencies:
+    wordwrap "~0.0.2"
+
 optimist@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
@@ -6053,6 +6065,10 @@ react-dom@^16.3.2:
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
+
+react-facebook-login@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-4.0.1.tgz#7d43672ee86e3f2cd9e8758de1e61eb66a212611"
 
 react-ionicons@^2.1.6:
   version "2.1.6"

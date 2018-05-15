@@ -21,23 +21,23 @@ const Auth = (props, context) => (
         <div className={styles.whiteBox}>
           {props.action === "login" && (
             <p className={styles.text}>
-              Don't have an account?{" "}
+              {context.t("Don't have an account")}?{" "}
               <span className={styles.changeLink} onClick={props.changeAction}>
-                Sign up
+                {context.t("Sign up")}
               </span>
             </p>
           )}
           {props.action === "signup" && (
             <p className={styles.text}>
-              Have an account?{" "}
+              {context.t("Have an account")}?{" "}
               <span className={styles.changeLink} onClick={props.changeAction}>
-                Login
+                {context.t("Login")}
               </span>
             </p>
           )}
         </div>
         <div className={styles.appBox}>
-          <p className={styles.text}>Get the app.</p>
+          <p className={styles.text}>{context.t("Get the app")}.</p>
           <div className={styles.apps}>
             <img
               src={require("images/ios.png")}
@@ -53,5 +53,9 @@ const Auth = (props, context) => (
     </article>
   </main>
 );
+
+Auth.contextTypes = {
+  t: PropTypes.func.isRequired
+}
 
 export default Auth;

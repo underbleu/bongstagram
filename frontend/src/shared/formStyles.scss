@@ -21,12 +21,13 @@
       }
     }
   }
+  .button-box{
+    margin: 8px 40px;
+  }
   .button {
-    @include blueButton() {
-      margin: 8px 40px;
-    }
-    svg {
-      margin: 0 5px -4.5px 0;
+    @include blueButton();
+    i {
+      margin-right: 5px;
     }
   }
   .divider {
@@ -46,10 +47,17 @@
     }
   }
   .facebook-link {
-    margin-bottom: 6px;
+    color: #262626;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
-    svg {
-      margin: 0 5px -4.5px 0;
+    i {
+      color: #384185;
+      margin-right: 5px;
+    }
+    &:focus,
+    &:hover {
+      outline: none;
     }
   }
   .forgot-link {

@@ -15,6 +15,7 @@ class Container extends Component {
         passwordValue={password}
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
+        handleFacebookLogin={this._handleFacebookLogin}
       />
     );
   }
@@ -28,6 +29,10 @@ class Container extends Component {
   _handleSubmit = event => {
     event.preventDefault(); // form의 디폴트 이벤트 막기(username, password를 url에 표시하지 않도록)
     console.log(this.state);
+  }
+  
+  _handleFacebookLogin = response => {
+    console.log(response);
   }
 }
 
