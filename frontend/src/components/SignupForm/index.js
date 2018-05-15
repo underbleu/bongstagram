@@ -6,6 +6,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     facebookLogin: access_token => {
       dispatch(userActions.facebookLogin(access_token));
+    },
+    createAccount: (email, name, username, password) => {
+      dispatch(userActions.createAccount(email, name, username, password));
     }
   };
 }
