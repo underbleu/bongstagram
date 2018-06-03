@@ -192,7 +192,7 @@ const env = process.env.NODE_ENV;
 const middlewares = [thunk];
 
 if(env === "development"){
-  const { logger } = require("redux-logger"); //2. dev 환경에서만
+  const { logger } = require("redux-logger"); // 2. dev 환경에서만
   middlewares.push(logger);
 }
 ```
