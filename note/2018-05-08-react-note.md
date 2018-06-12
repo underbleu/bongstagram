@@ -9,12 +9,13 @@ props를 이용하여 내려받던 것을, context를 사용하면 부모에서 
 
 
 ```js
+// devtools에서 보낼 액션
 { type: 'REDUX_I18N_SET_LANGUAGE',
   lang: 'ko' }
 ```
 
 ## 1. Stateless 컴포넌트 번역
-* State 없는 함수형 컴포넌트는 contextTypes가 정의되어있는 경우 context 를 참조할 수 있다
+* State 없는 함수형 컴포넌트는 contextTypes이 정의되어 있어야지만 context 를 참조할 수 있다
 * 만약 contextTypes 가 정의되지 않았다면, context 는 빈 객체 된다
 ```js
 // Footer/index.js
@@ -51,7 +52,7 @@ Footer.contextTypes = {
 ```js
 class Footer extends React.Component {
   
-  static contextTypes = {
+  static contextTypes = { // --- 1. context의 t함수 불러오기
     t: PropTypes.func.isRequired
   }
   

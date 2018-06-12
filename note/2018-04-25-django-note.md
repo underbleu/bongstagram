@@ -289,7 +289,7 @@ class ChangePassword(APIView):
 
 # #1-69 What is JWT
 
-A: Where `request.user` come from?
+A: Where `request.user` come from?  
 Q: 로그인할때 쿠키에 생기는 sessionid를 보고 장고가 유저인증을함 (Network > Cookies > sessionid에서 확인가능)  
 ```python
 # config/settings/base.py
