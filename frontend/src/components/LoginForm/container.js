@@ -37,7 +37,6 @@ class Container extends Component {
     const { username, password } = this.state;
     event.preventDefault(); // form의 디폴트 이벤트 막기(username, password를 url에 표시하지 않도록)
     usernameLogin(username, password);
-    console.log(this.state);
   }
   
   _handleFacebookLogin = response => {
