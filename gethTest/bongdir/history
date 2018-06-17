@@ -1,0 +1,16 @@
+eth.coinbase
+miner.start()
+miner.stop()
+miner.start()
+miner.stop()
+eth.coinbase
+miner.start()
+miner.stop()
+eth.coinbase
+miner.stop()
+miner.start()
+miner.stop()
+miner.start()
+miner.stop()
+miner.start()
+miner.stop()

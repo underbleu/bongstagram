@@ -1,6 +1,16 @@
 // import
 
 import { actionCreators as userActions} from "redux/modules/user";
+import abiArray from 'build/contracts/CopyrightToken.json';
+const web3 = window.web3;
+const MyContract = web3.eth.contract(abiArray.abi);
+const contractInstance = MyContract.at("0x4f133423121f5b652a688121aa09a992ecdaf325");
+
+contractInstance.getCopyrightInfo.call(3, (err, data) => {
+  data[0] = web3.toDecimal(data[0])
+  data[2] = web3.toDecimal(data[2])
+  console.log(data)
+});
 
 // actions
 
@@ -148,9 +158,12 @@ function uploadPhoto(file, location, caption) {
       }
       return response.json();
     })
-    .then(json => console.log(json.file))
+    .then(json => {
+      contractInstance.mint.sendTransaction(`http://localhost:8000${json.file}`, {
+        from: getState().token.walletAddress,
+      }, (err, txHash) => console.log(err, txHash));
+    })
     .catch(err => console.log(err))
-    
   };
 }
 
