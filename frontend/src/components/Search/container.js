@@ -21,12 +21,9 @@ class Container extends Component {
       searchByTerm();
     }
   };
-
   componentWillReceiveProps = nextProps => {
     if (nextProps.userList && nextProps.imageList) {
-      this.setState({
-        loading: false
-      });
+      this.setState({ loading: false });
     }
   };
   render() {

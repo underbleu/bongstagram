@@ -125,6 +125,35 @@ function commentPhoto(photoId, message) {
   };
 }
 
+function uploadPhoto(file, location, caption) {
+  const data = new FormData();
+  data.append("caption", caption);
+  data.append("location", location);
+  data.append("file", file);
+
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    return fetch(`/images/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+      body: data
+    })
+    .then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.ok) {
+        dispatch(getFeed());
+      }
+      return response.json();
+    })
+    .then(json => console.log(json.file))
+    .catch(err => console.log(err))
+    
+  };
+}
+
 // initial state
 
 const initialState = {};
@@ -202,7 +231,8 @@ const actionCreators = {
   getFeed,
   likePhoto,
   unlikePhoto,
-  commentPhoto
+  commentPhoto,
+  uploadPhoto
 };
 
 export { actionCreators };

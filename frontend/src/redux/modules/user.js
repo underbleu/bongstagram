@@ -48,6 +48,7 @@ function setUserList(userList) {
 }
 
 function setImageList(imageList) {
+  console.log("들어왓냐", imageList)
   return {
     type: SET_IMAGE_LIST,
     imageList
@@ -204,13 +205,14 @@ function getExplore() {
 function searchByTerm(searchTerm) {
   return async (dispatch, getState) => {
     const { user: { token } } = getState();
-    const userList = await searchUsers(token, searchTerm);
     const imageList = await searchImages(token, searchTerm);
+    const userList = await searchUsers(token, searchTerm);
     if (userList === 401 || imageList === 401) {
       dispatch(logout());
     }
-    // dispatch(setUserList(userList));
-    // dispatch(setImageList(imageList));
+    console.log("서치바이텀", imageList)
+    dispatch(setImageList(imageList));
+    dispatch(setUserList(userList));
   };
 }
 
@@ -230,6 +232,22 @@ function searchUsers(token, searchTerm) {
     .then(json => json);
 }
 
+// 서버에러 임시방편
+function searchImages(token) {
+  return fetch("/images/", {
+    headers: {
+      Authorization: `JWT ${token}`,
+      "Content-Type": "application/json"
+    }
+  })
+    .then(response => {
+      if (response.status === 401) return 401;
+      return response.json();
+    })
+    .then(json => json);
+}
+
+/* 완성형코드
 function searchImages(token, searchTerm) {
   return fetch(`/images/search/?hashtags=${searchTerm}`, {
     headers: {
@@ -245,7 +263,7 @@ function searchImages(token, searchTerm) {
     })
     .then(json => json)
     .catch(err => console.log(err))
-}
+} */
 
 // initial state
 

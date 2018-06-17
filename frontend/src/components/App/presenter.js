@@ -8,11 +8,13 @@ import Navigation from "components/Navigation";
 import Feed from "components/Feed";
 import Explore from "components/Explore";
 import Search from "components/Search";
+import UploadPhoto from "components/UploadPhoto";
 
 const App = props => [
   props.isLoggedIn ? <Navigation key={1} /> : null,
+  props.isLoggedIn ? <UploadPhoto key={3} /> : null,
   props.isLoggedIn ? <PrivateRoutes key={2} /> : <PublicRoutes key={2} />,
-  <Footer key={3} />
+  <Footer key={4} />
 ];
 
 App.propTypes = {
