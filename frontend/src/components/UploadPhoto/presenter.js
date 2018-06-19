@@ -22,7 +22,7 @@ const UploadPhoto = (props, context) => (
           placeholder="Upload your memories"
           className={styles.file}
           required="true"
-        />
+          />
         <input
           type="text"
           name="location"
@@ -30,7 +30,8 @@ const UploadPhoto = (props, context) => (
           onChange={props.handleInputChange}
           placeholder="Where did you take the photo ?"
           className={styles.location}
-        />
+          required="true"
+          />
         <Textarea
           type="text"
           name="caption"
@@ -38,7 +39,8 @@ const UploadPhoto = (props, context) => (
           onChange={props.handleInputChange}
           placeholder="Upload your memories"
           className={styles.caption}
-        />
+          required="true"
+          />
         <div className={styles.buttonBox}>
           <input type="submit" value="Upload" className={styles.button} />
         </div>

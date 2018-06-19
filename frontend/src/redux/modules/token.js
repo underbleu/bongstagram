@@ -2,40 +2,38 @@
 
 
 // action
-const CHANGE_LOADING = "CHANGE_LOADING";
+const WALLET_LOADING = "WALLET_LOADING";
 
 // action creator
-function changeLoading(walletAddress) {
+function walletLoading(walletAddress) {
   return {
-    type: CHANGE_LOADING,
+    type: WALLET_LOADING,
     walletAddress
   }
 }
 
-function getAccounts() {
+function getWallet() {
   return dispatch => {
     const { web3 } = window;
-    
     web3.eth.getAccounts((err, data) => {
       if (err) console.log(err);
       const walletAddress = data[0];
       console.log("지갑",walletAddress)
-      dispatch(changeLoading(walletAddress));
+      dispatch(walletLoading(walletAddress));
     });
-    
   }
 }
 
 const initialState = {
-  tokenLoading: true
+  walletLoading: true
 };
 
 // reducer
 
 function reducer(state = initialState, action) {
   switch(action.type) {
-    case CHANGE_LOADING:
-      return applyChangeLoading(state, action);
+    case WALLET_LOADING:
+      return applyWalletLoading(state, action);
     default:
       return state;
   }
@@ -43,15 +41,17 @@ function reducer(state = initialState, action) {
 
 // reducer function
 
-function applyChangeLoading(state, action) {
+function applyWalletLoading(state, action) {
+  const { walletAddress } = action;
   return {
-    tokenLoading: false
+    walletLoading: false,
+    walletAddress
   };
 }
 
 // export
 const actionCreators = {
-  getAccounts
+  getWallet
 }
 
 export { actionCreators }

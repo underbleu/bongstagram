@@ -13,7 +13,7 @@ import Loading from "components/Loading";
 
 const App = props => {
  
-  if (props.tokenLoading) return <Loading />;
+  if (props.walletLoading) return <Loading />;
   
   return [
     props.isLoggedIn ? <Navigation key={1} /> : null,

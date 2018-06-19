@@ -1,8 +1,0 @@
-miner.start()
-miner.stop()
-miner.stop
-miner.stop()
-personal
-eth.accounts[0]
-truffle migrate --reset --network
-truffle migrate --reset --network CRT

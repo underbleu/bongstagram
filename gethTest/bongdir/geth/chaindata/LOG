@@ -63,3 +63,72 @@
 20:50:48.364486 table@compaction committed F-1 S-165KiB Ke·0 D·4096 T·41.6637ms
 20:50:48.366470 table@remove removed @12
 20:50:48.368454 table@remove removed @11
+=============== Jun 18, 2018 (KST) ===============
+15:16:14.087467 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:16:14.099349 version@stat F·[0 1] S·479KiB[0B 479KiB] Sc·[0.00 0.00]
+15:16:14.099349 db@open opening
+15:16:14.099876 journal@recovery F·1
+15:16:14.103338 journal@recovery recovering @13
+15:16:14.118775 memdb@flush created L0@16 N·331 S·16KiB "Dat..ion,v12446":"r\x00\x00..jm~,v12772"
+15:16:14.123239 version@stat F·[1 1] S·495KiB[16KiB 479KiB] Sc·[0.25 0.00]
+15:16:14.139111 db@janitor F·4 G·0
+15:16:14.139111 db@open done T·39.2355ms
+15:18:18.628055 table@compaction L0·1 -> L1·1 S·495KiB Q·12986
+15:18:18.720310 table@build created L1@19 N·8522 S·493KiB "\x00\xe5\xce..\xc1,N,v12428":"\xf8\xfai..\x9c\xf1\x13,v12437"
+15:18:18.720310 version@stat F·[0 1] S·493KiB[0B 493KiB] Sc·[0.00 0.00]
+15:18:18.758502 table@compaction committed F-1 S-2KiB Ke·0 D·110 T·130.4475ms
+15:18:18.758998 table@remove removed @16
+15:18:18.796694 table@remove removed @15
+=============== Jun 18, 2018 (KST) ===============
+15:36:50.525703 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:36:50.526210 version@stat F·[0 1] S·493KiB[0B 493KiB] Sc·[0.00 0.00]
+15:36:50.526210 db@open opening
+15:36:50.526682 journal@recovery F·1
+15:36:50.530649 journal@recovery recovering @17
+15:36:50.547932 memdb@flush created L0@20 N·974 S·49KiB "Dat..ion,v12778":"r\x00\x00..\xb2i\x95,v13747"
+15:36:50.551900 version@stat F·[1 1] S·542KiB[49KiB 493KiB] Sc·[0.25 0.00]
+15:36:50.566282 db@janitor F·4 G·0
+15:36:50.566282 db@open done T·40.0718ms
+15:39:17.799264 table@compaction L0·1 -> L1·1 S·542KiB Q·13880
+15:39:17.824562 table@build created L1@23 N·9134 S·530KiB "\x00\xe5\xce..\xc1,N,v12428":"\xf8\xfai..\x9c\xf1\x13,v12437"
+15:39:17.824562 version@stat F·[0 1] S·530KiB[0B 530KiB] Sc·[0.00 0.01]
+15:39:17.831010 table@compaction committed F-1 S-12KiB Ke·0 D·362 T·31.7462ms
+15:39:17.831503 table@remove removed @20
+15:39:17.832497 table@remove removed @19
+=============== Jun 18, 2018 (KST) ===============
+22:30:51.453628 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:30:51.466525 version@stat F·[0 1] S·530KiB[0B 530KiB] Sc·[0.00 0.01]
+22:30:51.466525 db@open opening
+22:30:51.466525 journal@recovery F·1
+22:30:51.469996 journal@recovery recovering @21
+22:30:51.499757 memdb@flush created L0@24 N·3188 S·163KiB "Dat..ion,v13753":"r\x00\x00..j\xf7-,v16936"
+22:30:51.503724 version@stat F·[1 1] S·694KiB[163KiB 530KiB] Sc·[0.25 0.01]
+22:30:51.518118 db@janitor F·4 G·0
+22:30:51.518118 db@open done T·51.5926ms
+22:34:06.694733 table@compaction L0·1 -> L1·1 S·694KiB Q·16943
+22:34:06.773101 table@build created L1@27 N·11150 S·648KiB "\x00\xe5\xce..\xc1,N,v12428":"\xf8\xfai..\x9c\xf1\x13,v12437"
+22:34:06.773101 version@stat F·[0 1] S·648KiB[0B 648KiB] Sc·[0.00 0.01]
+22:34:06.780045 table@compaction committed F-1 S-45KiB Ke·0 D·1172 T·85.312ms
+22:34:06.783021 table@remove removed @24
+22:34:06.786492 table@remove removed @23
+22:36:17.086288 db@close closing
+22:36:17.102657 db@close done T·16.3686ms
+=============== Jun 18, 2018 (KST) ===============
+22:36:24.475577 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:36:24.476073 version@stat F·[0 1] S·648KiB[0B 648KiB] Sc·[0.00 0.01]
+22:36:24.476073 db@open opening
+22:36:24.476073 journal@recovery F·1
+22:36:24.479545 journal@recovery recovering @25
+22:36:24.489961 memdb@flush created L0@28 N·2 S·239B "Dat..ion,v16942":"Las..der,v16943"
+22:36:24.494425 version@stat F·[1 1] S·649KiB[239B 648KiB] Sc·[0.25 0.01]
+22:36:24.511289 db@janitor F·4 G·0
+22:36:24.511289 db@open done T·35.2158ms
+22:37:38.709676 table@compaction L0·1 -> L1·1 S·649KiB Q·17027
+22:37:38.914523 table@build created L1@31 N·11150 S·648KiB "\x00\xe5\xce..\xc1,N,v12428":"\xf8\xfai..\x9c\xf1\x13,v12437"
+22:37:38.914523 version@stat F·[0 1] S·648KiB[0B 648KiB] Sc·[0.00 0.01]
+22:37:38.978030 table@compaction committed F-1 S-241B Ke·0 D·2 T·268.3539ms
+22:37:38.979004 table@remove removed @28
+22:37:39.016204 table@remove removed @27
+=============== Jun 19, 2018 (KST) ===============
+11:25:20.953870 db@close closing
+11:25:20.967264 db@close done T·13.3935ms

@@ -33,17 +33,14 @@ class Container extends Component {
   
   _handleFileChange = event => {
     const { target: { files } } = event;
-    // const data = files[0]
     this.setState({ file: files[0] });
   }
   
   _handleSubmit = event => {
-    console.log("시작",this.state);
     const { file, location, caption } = this.state;
-    event.preventDefault();
     const { uploadPhoto } = this.props;
+    event.preventDefault();
     uploadPhoto(file, location, caption);
-    console.log("끝",this.state);
   };
 }
 

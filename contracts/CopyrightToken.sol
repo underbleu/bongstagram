@@ -23,7 +23,7 @@ contract CopyrightToken {
     
     Copyright[] copyrights;
     
-    function mint(string _photoURL) public {
+    function mint(string _photoURL) public{
         
         uint _id = copyrights.length;
         

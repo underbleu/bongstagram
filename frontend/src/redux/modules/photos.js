@@ -1,16 +1,25 @@
 // import
 
 import { actionCreators as userActions} from "redux/modules/user";
-import abiArray from 'build/contracts/CopyrightToken.json';
+
+// Web3
+
+import abiArray from "build/contracts/CopyrightToken.json";
 const web3 = window.web3;
 const MyContract = web3.eth.contract(abiArray.abi);
-const contractInstance = MyContract.at("0x4f133423121f5b652a688121aa09a992ecdaf325");
+const contractInstance = MyContract.at("0x4f133423121f5b652a688121aa09a992ecdaf325"); // -> 디플로이된 CopyrightToken의 컨트랙트 주소
 
-contractInstance.getCopyrightInfo.call(3, (err, data) => {
-  data[0] = web3.toDecimal(data[0])
-  data[2] = web3.toDecimal(data[2])
-  console.log(data)
+contractInstance.getCopyrightInfo.call(65, (err, data) => {
+  data[0] = web3.toDecimal(data[0]);
+  data[2] = web3.toDecimal(data[2]);
+  console.log("맞는가요",data);
 });
+
+// contractInstance.getCopyrightInfo.call(0, (err, data) => {
+//   data[0] = web3.toDecimal(data[0])
+//   data[2] = web3.toDecimal(data[2])
+//   console.log(data)
+// });
 
 // actions
 
@@ -158,14 +167,41 @@ function uploadPhoto(file, location, caption) {
       }
       return response.json();
     })
-    .then(json => {
-      contractInstance.mint.sendTransaction(`http://localhost:8000${json.file}`, {
-        from: getState().token.walletAddress,
-      }, (err, txHash) => console.log(err, txHash));
+    .then(json => { console.log(json)
+      contractInstance.mint.sendTransaction(
+        `http://localhost:8000${json.file}`,
+        { from : getState().token.walletAddress },
+        (err, txHash) => {
+          contractInstance.totalSupply.call({}, (err, tokenLength) => {
+            console.log("토큰몇개", web3.toDecimal(tokenLength));
+            const tokenId = web3.toDecimal(tokenLength) - 1;
+            console.log("아이디뭐", tokenId)
+            contractInstance.getCopyrightInfo.call(tokenId, (err, data) => {
+              data[0] = web3.toDecimal(data[0]);
+              data[2] = web3.toDecimal(data[2]);
+              console.log(data)
+            })
+          })
+        }
+      );
     })
+    //   contractInstance.mint.sendTransaction(
+    //     `http://localhost:8000${json.file}`, 
+    //     { from: getState().token.walletAddress },
+    //     (err, txHash) => contractInstance.totalSupply.call({}, (err, tokenLength) => {
+    //       tokenId = web3.toDecimal(tokenLength) - 1;
+    //       contractInstance.getCopyrightInfo.call(tokenId, (err, data) => {
+    //         data[0] = web3.toDecimal(data[0])
+    //         data[2] = web3.toDecimal(data[2])
+    //         console.log("데이터?", data)
+    //       });
+    //     }
+    // })
     .catch(err => console.log(err))
   };
 }
+
+function saveToken() {}
 
 // initial state
 
