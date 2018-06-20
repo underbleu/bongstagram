@@ -8,9 +8,10 @@ import I18n from "redux-i18n";
 import { translations } from "translations";
 import { actionCreators as tokenActions } from "redux/modules/token";
 
-// Debugging
 
-import "ReactotronConfig";
+// import Web3 from "web3";
+// const web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://localhost:8546'));
+
 
 
 

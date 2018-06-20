@@ -8,7 +8,6 @@ const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_USER_LIST = "SET_USER_LIST";
 const SET_IMAGE_LIST = "SET_IMAGE_LIST";
-const SET_EXPLORE = "SET_EXPLORE";
 
 // Action Creator
 

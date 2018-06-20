@@ -47,14 +47,20 @@ const UploadPhoto = (props, context) => (
       </form>
     </div>
   </div>
-  // <Ionicon icon="logo-instagram" fontSize="28px" color="black" />;
   // {props.seeingUpload && <RenderUpload title={context.t("Upload Photo")} closeUpload={props.closeUpload} />}
+);
+
+const UploadButton = props => (
+  <div className={styles.button} onClick={props.openUpload}>
+    <Ionicon icon="logo-instagram" fontSize="28px" color="black" />;
+  </div>
 );
 
 UploadPhoto.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleFileChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  openUpload: PropTypes.func.isRequired
 };
 
 

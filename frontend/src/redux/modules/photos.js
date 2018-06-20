@@ -1,25 +1,51 @@
 // import
-
+import store from "redux/configureStore";
 import { actionCreators as userActions} from "redux/modules/user";
 
 // Web3
 
 import abiArray from "build/contracts/CopyrightToken.json";
+import Web3 from "web3";
+
+// Meta Mask
 const web3 = window.web3;
 const MyContract = web3.eth.contract(abiArray.abi);
-const contractInstance = MyContract.at("0x4f133423121f5b652a688121aa09a992ecdaf325"); // -> 디플로이된 CopyrightToken의 컨트랙트 주소
+const contractInstance = MyContract.at(
+  "0xfc69f347eb271efcbee572e46ddc871abeb7f954"
+); // -> 디플로이된 CopyrightToken의 컨트랙트 주소
 
-contractInstance.getCopyrightInfo.call(65, (err, data) => {
-  data[0] = web3.toDecimal(data[0]);
-  data[2] = web3.toDecimal(data[2]);
-  console.log("맞는가요",data);
+// web3 1.0
+const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://localhost:8546'));
+const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0xfc69f347eb271efcbee572e46ddc871abeb7f954");
+
+const dispatchSaveImageToken = (imageId, photoToken) => store.dispatch(saveImageToken(imageId, photoToken));
+
+MyContract2.events
+  .GenerateToken((err, event) => { if(err) console.log(err) })
+  .on('data', function(event){
+    const imageId = event.returnValues._imageId;
+    const photoToken = event.returnValues._tokenId;
+    dispatchSaveImageToken(imageId, photoToken);
+  })
+  .on('error', function(error){
+    console.log(error)
+  });
+
+contractInstance.totalSupply.call({}, (err, tokenLength) => {
+  console.log("토큰몇개", web3.toDecimal(tokenLength));
 });
 
-// contractInstance.getCopyrightInfo.call(0, (err, data) => {
-//   data[0] = web3.toDecimal(data[0])
-//   data[2] = web3.toDecimal(data[2])
-//   console.log(data)
+// contractInstance.getCopyrightInfo.call(65, (err, data) => {
+//   data[0] = web3.toDecimal(data[0]);
+//   data[2] = web3.toDecimal(data[2]);
+//   console.log("맞는가요",data);
 // });
+
+/* this.ContractInstance.events.PurchaseMade({}, (error, data) => {
+  if (error) console.log("Error: " + error);
+  else console.log("Log data: " + data);
+}); */
+
 
 // actions
 
@@ -27,6 +53,8 @@ const SET_FEED = "SET_FEED";
 const LIKE_PHOTO = "LIKE_PHOTO";
 const UNLIKE_PHOTO = "UNLIKE_PHOTO";
 const ADD_COMMENT = "ADD_COMMENT";
+const SAVE_IMAGE_TOKEN = "SAVE_IMAGE_TOKEN";
+
 
 // action creators
 
@@ -138,7 +166,7 @@ function commentPhoto(photoId, message) {
     })
     .then(json => {
       if(json.message) {
-        dispatch(addComment(photoId, json)); //json = comment객체 (id, message, creator...)
+        dispatch(addComment(photoId, json)); // json = comment객체 (id, message, creator...)
       }
     })
   };
@@ -167,24 +195,56 @@ function uploadPhoto(file, location, caption) {
       }
       return response.json();
     })
-    .then(json => { console.log(json)
+    .then(json => {
       contractInstance.mint.sendTransaction(
-        `http://localhost:8000${json.file}`,
-        { from : getState().token.walletAddress },
-        (err, txHash) => {
-          contractInstance.totalSupply.call({}, (err, tokenLength) => {
-            console.log("토큰몇개", web3.toDecimal(tokenLength));
-            const tokenId = web3.toDecimal(tokenLength) - 1;
-            console.log("아이디뭐", tokenId)
-            contractInstance.getCopyrightInfo.call(tokenId, (err, data) => {
-              data[0] = web3.toDecimal(data[0]);
-              data[2] = web3.toDecimal(data[2]);
-              console.log(data)
-            })
-          })
-        }
+        json.id,  // _imageId
+        `http://localhost:8000${json.file}`,  // _photoURL
+        { from: getState().token.walletAddress },
+        (err, txHash) => console.log(err, txHash)
       );
     })
+    .catch(err => console.log(err))
+  };
+}
+
+function saveImageToken(imageId, photoToken) {
+  console.log("들어오나요1", imageId, photoToken)
+  const data = new FormData();
+  data.append("photoToken", photoToken)
+
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    console.log("들어오나요2")
+    return fetch(`/images/${imageId}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`
+      },
+      body: data
+    })
+      .then(response => {
+        console.log("응답뭔가요", response.status);
+        // if (response.status === 401) {
+        //   dispatch(userActions.logout());
+        // }
+        // return response.json();
+      })
+      .then(json => console.log("토큰저장 응답오나요", json))
+      .catch(err => console.log(err));
+  };
+}
+
+    // contractInstance.totalSupply.call({}, (err, tokenLength) => {
+          //   console.log("토큰몇개", web3.toDecimal(tokenLength));
+          //   const tokenId = web3.toDecimal(tokenLength) - 1;
+          //   console.log("아이디뭐", tokenId)
+          //   contractInstance.getCopyrightInfo.call(tokenId, (err, data) => {
+          //     data[0] = web3.toDecimal(data[0]);
+          //     data[2] = web3.toDecimal(data[2]);
+          //     console.log(data)
+          //   })
+          // })
+          
     //   contractInstance.mint.sendTransaction(
     //     `http://localhost:8000${json.file}`, 
     //     { from: getState().token.walletAddress },
@@ -197,15 +257,11 @@ function uploadPhoto(file, location, caption) {
     //       });
     //     }
     // })
-    .catch(err => console.log(err))
-  };
-}
-
-function saveToken() {}
-
 // initial state
 
-const initialState = {};
+const initialState = {
+  feed: []
+};
 
 
 // reducer
@@ -220,6 +276,8 @@ function reducer (state = initialState, action) {
       return applyUnlikePhoto(state, action);
     case ADD_COMMENT:
       return applyAddComment(state, action);
+    case SAVE_IMAGE_TOKEN:
+      return applySaveImageToken(state, action);
     default:
       return state;
   }
@@ -272,6 +330,10 @@ function applyAddComment(state, action) {
     return photo;
   })
   return { ...state, feed: updatedFeed } // state를 업데이트
+}
+
+function applySaveImageToken(state, action) {
+  
 }
 
 // exports

@@ -7,7 +7,7 @@ import { i18nState } from 'redux-i18n';
 import user from "redux/modules/user";
 import photos from "redux/modules/photos";
 import token from "redux/modules/token";
-import Reactotron from "ReactotronConfig";
+// import Reactotron from "ReactotronConfig";
 
 const env = process.env.NODE_ENV; // 코드실행 환경출력 (dev/prod)
 
@@ -32,7 +32,7 @@ let store;
 
 if (env === "development") {
   store = initialState =>
-    Reactotron.createStore(reducer, composeWithDevTools(applyMiddleware(...middlewares)));
+    createStore(reducer, composeWithDevTools(applyMiddleware(...middlewares)));
 } else {
   store = initialState => createStore(reducer, applyMiddleware(...middlewares));
 }

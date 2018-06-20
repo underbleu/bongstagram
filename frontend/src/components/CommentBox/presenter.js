@@ -15,7 +15,7 @@ const CommentBox = (props, context) => (
   </form>
 );
 
-CommentBox.PropTypes = {
+CommentBox.propTypes = {
   comment: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired

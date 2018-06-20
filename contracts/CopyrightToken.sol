@@ -5,13 +5,6 @@ import "./Migrations.sol";
 
 contract CopyrightToken {
     
-    mapping(uint => address) internal tokenOwners;
-    mapping(uint => bool) internal tokenExists;
-    mapping(address => uint) internal copyrightCounts; // How many copyrights _id has
-    mapping(address => mapping(address => uint256)) internal allowed;
-    
-    
-    //private: Can call in this Contract
     struct Copyright {
         uint id;
         string photoURL;
@@ -23,23 +16,35 @@ contract CopyrightToken {
     
     Copyright[] copyrights;
     
-    function mint(string _photoURL) public{
+    mapping(uint => address) internal tokenOwners;
+    mapping(uint => bool) internal tokenExists;
+    mapping(address => uint) internal copyrightCounts; // How many copyrights _id has
+    mapping(address => mapping(address => uint256)) internal allowed;
+    
+    event GenerateToken(uint _tokenId, uint _imageId);
+    event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);
+    event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);
+    
+    function mint(uint _imageId, string _photoURL) public returns (uint){
         
-        uint _id = copyrights.length;
+        uint _tokenId = copyrights.length;
         
         Copyright memory _copyright = Copyright({
-            id: _id,
+            id: _tokenId,
             photoURL: _photoURL,
             issueDate: uint256(now),
             originalOwner: msg.sender,
             oldOwner: address(0),
             newOwner: msg.sender
         });
+        
         copyrights.push(_copyright);
         
-        tokenOwners[_id] = msg.sender;
-        tokenExists[_id] = true;
+        tokenOwners[_tokenId] = msg.sender;
+        tokenExists[_tokenId] = true;
         copyrightCounts[msg.sender] += 1;
+        
+        emit GenerateToken(_tokenId, _imageId);
     }
     
     function getCopyrightInfo(uint _tokenId)
@@ -88,7 +93,8 @@ contract CopyrightToken {
         require(msg.sender != _to);
         
         allowed[msg.sender][_to] = _tokenId;
-        // event Approval
+        
+        emit Approval(msg.sender, _to, _tokenId);
     }
     
     function takeOwnership(uint256 _tokenId) public {
@@ -105,7 +111,7 @@ contract CopyrightToken {
         
         copyrightCounts[newOwner] += 1;
         
-        // event. Transfer
+        emit Transfer(oldOwner, newOwner, _tokenId);
     }
     
     function transfer(address _to, uint256 _tokenId) public {
@@ -122,6 +128,8 @@ contract CopyrightToken {
         tokenOwners[_tokenId] = newOwner;
         
         copyrightCounts[newOwner] += 1;
-        // event. Transfer
+        
+        emit Transfer(oldOwner, newOwner, _tokenId);
     }
+    
 }

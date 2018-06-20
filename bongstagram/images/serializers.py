@@ -96,7 +96,9 @@ class InputImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Image
         fields = (
+            'id',
             'file',
             'location',
             'caption',
+            'photoToken'
         )
