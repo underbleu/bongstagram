@@ -33,6 +33,19 @@
       }
     }
   }
+  .imgBox {
+    position: relative;
+    img {
+      display: block;
+    }
+    .copyright {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
   .meta {
     padding: 15px;
     padding-bottom: 0;

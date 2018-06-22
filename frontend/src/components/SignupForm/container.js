@@ -7,18 +7,22 @@ class Container extends Component {
     email: '',
     name: '',
     username: '',
-    password: ''
+    password: '',
+    walletAddress: this.props.walletAddress
   }
   
   static propTypes = {
+    walletAddress: PropTypes.string,
     facebookLogin: PropTypes.func.isRequired,
     createAccount: PropTypes.func.isRequired
   }
   
   render() {
-    const { email, name, username, password } = this.state;
+    const { email, name, username, password, walletAddress } = this.state;
+    console.log(this.props.walletAddress);
     return (
       <SignupForm 
+        walletAddressValue={walletAddress}
         emailValue={email}
         nameValue={name}
         usernameValue={username}
@@ -42,7 +46,6 @@ class Container extends Component {
     const { createAccount } = this.props;
     event.preventDefault();
     createAccount(email, name, username, password);
-    console.log(this.state);
   }
   
   _handleFacebookLogin = response => {

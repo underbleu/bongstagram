@@ -20,6 +20,15 @@ const SignupForm = (props, context) => (
     </div>
     <span className={formStyles.divider}>{context.t("or")}</span>
     <form className={formStyles.form} onSubmit={props.handleSubmit}>
+      {/* <input
+        type="text"
+        name="walletAddress"
+        value={props.walletAddressValue}
+        onChange={props.handleInputChange}
+        placeholder={context.t("Login with Metamask")}
+        className={formStyles.textInput}
+        required="true"
+      /> */}
       <input
         type="text"
         name="email"
@@ -67,8 +76,8 @@ const SignupForm = (props, context) => (
     <p className={formStyles.terms}>
       {context.t("By signing up, you agree to our")}
       <span className={formStyles.newLine}>
-        <span>{context.t("Terms")}</span> {context.t("&amp;")}{" "}
-        <span>{context.t("Privacy Policy")}</span>
+        <span>{context.t("Terms &")}</span>{" "}
+        <span>{context.t(" Privacy Policy")}</span>
         .
       </span>
     </p>

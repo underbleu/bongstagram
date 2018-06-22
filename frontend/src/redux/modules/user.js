@@ -47,7 +47,6 @@ function setUserList(userList) {
 }
 
 function setImageList(imageList) {
-  console.log("들어왓냐", imageList)
   return {
     type: SET_IMAGE_LIST,
     imageList
@@ -87,7 +86,10 @@ function usernameLogin(username, password) {
         password
       })
     })
-    .then(response => response.json())
+    .then(response => {
+      if(response.statue === 400) console.log("비밀번호 틀림");
+      return response.json();
+    })
     .then(json => {
       if(json.token) {
         dispatch(saveToken(json.token))
@@ -112,13 +114,13 @@ function createAccount(email, name, username, password) {
         password2: password
       })
     })
-    .then(response => response.json())
-    .then(json => {
-      if(json.token) {
-        dispatch(saveToken(json.token))
-      }
-    })
-    .catch(err => console.log(err));
+      .then(response => response.json())
+      .then(json => {
+        if (json.token) {
+          dispatch(saveToken(json.token));
+        }
+      })
+      .catch(err => console.log(err));
   };
 }
 
@@ -209,7 +211,6 @@ function searchByTerm(searchTerm) {
     if (userList === 401 || imageList === 401) {
       dispatch(logout());
     }
-    console.log("서치바이텀", imageList)
     dispatch(setImageList(imageList));
     dispatch(setUserList(userList));
   };

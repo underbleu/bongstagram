@@ -177,7 +177,6 @@ function uploadPhoto(file, location, caption) {
   data.append("caption", caption);
   data.append("location", location);
   data.append("file", file);
-
   return (dispatch, getState) => {
     const { user: { token } } = getState();
     return fetch(`/images/`, {
@@ -188,6 +187,7 @@ function uploadPhoto(file, location, caption) {
       body: data
     })
     .then(response => {
+      console.log(response.status)
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (response.ok) {
@@ -208,13 +208,11 @@ function uploadPhoto(file, location, caption) {
 }
 
 function saveImageToken(imageId, photoToken) {
-  console.log("들어오나요1", imageId, photoToken)
   const data = new FormData();
   data.append("photoToken", photoToken)
 
   return (dispatch, getState) => {
     const { user: { token } } = getState();
-    console.log("들어오나요2")
     return fetch(`/images/${imageId}/`, {
       method: "PUT",
       headers: {
@@ -223,11 +221,10 @@ function saveImageToken(imageId, photoToken) {
       body: data
     })
       .then(response => {
-        console.log("응답뭔가요", response.status);
-        // if (response.status === 401) {
-        //   dispatch(userActions.logout());
-        // }
-        // return response.json();
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
       })
       .then(json => console.log("토큰저장 응답오나요", json))
       .catch(err => console.log(err));
@@ -259,9 +256,7 @@ function saveImageToken(imageId, photoToken) {
     // })
 // initial state
 
-const initialState = {
-  feed: []
-};
+const initialState = { };
 
 
 // reducer

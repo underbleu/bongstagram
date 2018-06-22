@@ -20,6 +20,15 @@ const LoginForm = (props, context) => (
         placeholder={context.t("Password")}
         className={formStyles.textInput}
         required="true"/>
+      {/* <input
+        type="text"
+        name="walletAddress"
+        value={props.walletAddressValue}
+        onChange={props.handleInputChange}
+        placeholder={context.t("Login with Metamask")}
+        className={formStyles.textInput}
+        required="true"
+      /> */}
       <div className={formStyles.buttonBox}>
         <input type="submit"
           value={context.t("Log in")}

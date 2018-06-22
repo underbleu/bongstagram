@@ -6,6 +6,7 @@ import PhotoComments from "components/PhotoComments";
 import TimeStamp from "components/TimeStamp";
 import CommentBox from "components/CommentBox";
 import UserList from "components/UserList";
+import Copyright from "components/Copyright";
 
 const FeedPhoto = (props, context) => {
   return (
@@ -21,7 +22,12 @@ const FeedPhoto = (props, context) => {
           <span className={styles.location}>{props.location}</span>
         </div>
       </header>
-      <img src={props.file} alt={props.caption} />
+      <div className={styles.imgBox}>
+        <img src={props.file} alt={props.caption} />
+        <div className={styles.copyright}>
+          <Copyright photoToken={props.photoToken} />
+        </div>
+      </div>
       <div className={styles.meta}>
         <PhotoActions
           number={props.like_count}
@@ -44,6 +50,7 @@ const FeedPhoto = (props, context) => {
 
 FeedPhoto.propTypes = {
   id: PropTypes.number.isRequired,
+  // photoToken: PropTypes.number,
   creator: PropTypes.shape({
     profile_image: PropTypes.string,
     username: PropTypes.string.isRequired
