@@ -6,7 +6,8 @@ class Container extends Component {
   state = {
     file: "",
     location: "",
-    caption: ""
+    caption: "",
+    seeingUpload: false
   }
   
   static propTypes = {
@@ -20,6 +21,8 @@ class Container extends Component {
         handleInputChange={this._handleInputChange}
         handleFileChange={this._handleFileChange}
         handleSubmit={this._handleSubmit}
+        openUpload={this._openUpload}
+        closeUpload={this._closeUpload}
       />
     );
   }
@@ -41,7 +44,27 @@ class Container extends Component {
     const { uploadPhoto } = this.props;
     event.preventDefault();
     uploadPhoto(file, location, caption);
-  };
+    this.setState({
+      file: "",
+      location: "",
+      caption: "",
+      seeingUpload: false
+    });
+  }
+  
+  _openUpload = () => {
+    this.setState({
+      ...this.state,
+      seeingUpload: true
+    })
+  }
+  
+  _closeUpload = () => {
+    this.setState({
+      ...this.state,
+      seeingUpload: false
+    })
+  }
 }
 
 export default Container;
