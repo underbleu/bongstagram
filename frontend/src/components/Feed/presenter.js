@@ -20,7 +20,8 @@ const LoadingFeed = props => (
 
 const RenderFeed = props => (
   <div className={styles.feed}>
-    {props.feed && props.feed.map(photo => <FeedPhoto {...photo} key={photo.id} />)}
+    {console.log("피드있니", props.feed)}
+    {!props.feed.detail && props.feed.map(photo => <FeedPhoto {...photo} key={photo.id} />)}
   </div>
 );
 

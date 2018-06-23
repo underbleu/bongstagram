@@ -23,11 +23,11 @@
   }
   .button-box{
     margin: 8px 40px;
-  }
-  .button {
-    @include blueButton();
-    i {
-      margin-right: 5px;
+    .button {
+      @include blueButton();
+      i {
+        margin-right: 5px;
+      }
     }
   }
   .divider {

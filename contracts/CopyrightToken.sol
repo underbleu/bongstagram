@@ -21,7 +21,7 @@ contract CopyrightToken {
     mapping(address => uint) internal copyrightCounts; // How many copyrights _id has
     mapping(address => mapping(address => uint256)) internal allowed;
     
-    event GenerateToken(uint _tokenId, uint _imageId);
+    event GenerateToken(uint _imageId, uint _tokenId, uint256 _issueDate, address _originalOwner);
     event Transfer(address indexed _from, address indexed _to, uint256 _tokenId);
     event Approval(address indexed _owner, address indexed _approved, uint256 _tokenId);
     
@@ -44,7 +44,7 @@ contract CopyrightToken {
         tokenExists[_tokenId] = true;
         copyrightCounts[msg.sender] += 1;
         
-        emit GenerateToken(_tokenId, _imageId);
+        emit GenerateToken(_imageId, _tokenId, _copyright.issueDate, msg.sender);
     }
     
     function getCopyrightInfo(uint _tokenId)

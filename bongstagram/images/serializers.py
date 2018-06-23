@@ -78,7 +78,8 @@ class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
             'tags',
             'natural_time',
             'is_liked',
-            'photoToken'
+            'photoToken',
+            'txHash'
         )
         
     def get_is_liked(self, obj):
@@ -101,5 +102,6 @@ class InputImageSerializer(serializers.ModelSerializer):
             'file',
             'location',
             'caption',
-            'photoToken'
+            'photoToken',
+            'txHash'
         )

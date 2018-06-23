@@ -11,10 +11,11 @@ const SET_IMAGE_LIST = "SET_IMAGE_LIST";
 
 // Action Creator
 
-function saveToken(token) {
+function saveToken(token, username) {
   return {
     type: SAVE_TOKEN,
-    token
+    token,
+    username
   }
 }
 
@@ -91,8 +92,9 @@ function usernameLogin(username, password) {
       return response.json();
     })
     .then(json => {
+      const { token, user: { username } } = json;
       if(json.token) {
-        dispatch(saveToken(json.token))
+        dispatch(saveToken(token, username))
       }
     })
     .catch(err => console.log(err));
@@ -269,7 +271,8 @@ function searchImages(token, searchTerm) {
 
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  username: localStorage.getItem("username")
 }
 
 // reducer
@@ -296,12 +299,14 @@ function reducer(state = initialState, action){
 // reducer functions
 
 function applySetToken(state, action) {
-  const { token } = action;
+  const { token, username } = action;
   localStorage.setItem("jwt", token);
+  localStorage.setItem("username", username);
   return {
     ...state,
     isLoggedIn: true,
-    token
+    token,
+    username
   };
 }
 

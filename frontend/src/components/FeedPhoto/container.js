@@ -3,7 +3,8 @@ import FeedPhoto from "./presenter";
  
 class Container extends Component {
   state = {
-    seeingLikes: false
+    seeingLikes: false,
+    seeingTransfer: false
   }
   
   render() {
@@ -13,6 +14,8 @@ class Container extends Component {
         {...this.props} // <FeedPhoto {...photo} key={photo.id} />
         openLikes={this._openLikes}
         closeLikes={this._closeLikes}
+        openTransfer={this._openTransfer}
+        closeTransfer={this._closeTransfer}
       />
     );
   }
@@ -24,9 +27,22 @@ class Container extends Component {
     });
     getPhotoLikes();
   };
+  
   _closeLikes = () => {
     this.setState({
       seeingLikes: false
+    });
+  };
+  
+  _openTransfer = () => {
+    this.setState({
+      seeingTransfer: true
+    });
+  };
+  
+  _closeTransfer = () => {
+    this.setState({
+      seeingTransfer: false
     });
   };
 }

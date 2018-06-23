@@ -16,6 +16,11 @@ const PhotoActions = (props, context) => (
       <span className={styles.icon}>
         <Ionicon icon="ios-text-outline" fontSize="28px" color="black" />
       </span>
+      {props.username === props.creator && (
+        <span className={styles.transfer} onClick={props.openTransfer}>
+          <Ionicon icon="md-paper-plane" fontSize="28px" color="orange" />
+        </span>
+      )}
     </div>
     <span className={styles.likes} onClick={props.openLikes}>
       {props.number}{" "}

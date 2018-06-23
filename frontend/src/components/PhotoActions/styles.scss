@@ -1,12 +1,18 @@
 .actions {
   margin-bottom: 10px;
   .icons {
+    position: relative;
     margin-bottom: 5px;
     .icon {
       cursor: pointer;
       &:first-child {
         margin-right: 10px;
       }
+    }
+    .transfer {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
     }
   }
   .likes {

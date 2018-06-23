@@ -2,6 +2,13 @@ import { connect } from "react-redux";
 import Container from "./container";
 import { actionCreators as photoActions } from "redux/modules/photos";
 
+const mapStateToProps = ( state, ownProps ) => {
+  const { user: { username } } = state;
+  return {
+    username
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleHeartClick: () => {
@@ -14,4 +21,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

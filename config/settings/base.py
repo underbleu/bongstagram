@@ -44,7 +44,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
+    # 로컬에서 개발할 떄
     'default': env.db('DATABASE_URL', default='postgres://postgres:qhdtm503@localhost:5432/bongstagram'),
+    
+    # AWS 배포용
+    # 'default': env.db('DATABASE_URL', default='postgres://bong:bong12345@bongstagram.cccdocdspfki.ap-northeast-2.rds.amazonaws.com:5432/bongstagram'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
