@@ -28,6 +28,15 @@ const Transfer = props => (
           className={styles.textInput}
           required="true"
         />
+        <input
+          type="text"
+          name="gas"
+          value={props.gasValue}
+          onChange={props.handleInputChange}
+          placeholder="Gas?"
+          className={styles.textInput}
+          required="true"
+        />
         <div className={styles.buttonBox}>
           <input
             type="submit"
@@ -42,6 +51,8 @@ const Transfer = props => (
 
 
 Transfer.propTypes = {
+  // photoToken: PropTypes.number,
+  imageId: PropTypes.number.isRequired,
   addressValue: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired

@@ -4,41 +4,44 @@ import Transfer from "./presenter";
 
 class Container extends Component {
   state = {
-    address: ''
+    address: '',
+    gas: ''
   };
-  
+
   static propTypes = {
     walletAddress: PropTypes.string,
     // photoToken: PropTypes.number,
+    imageId: PropTypes.number.isRequired,
     closeTransfer: PropTypes.func.isRequired,
     transferCopyright: PropTypes.func.isRequired
   };
 
   render() {
-    const { address } = this.state;
+    const { address, gas } = this.state;
     return (
-      <Transfer 
+      <Transfer
         {...this.props}
         addressValue={address}
+        gasValue={gas}
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
       />
     )
   }
-  
+
   _handleInputChange = event => {
     const { target: { name, value } } = event;
     this.setState({
       [name]: value
     });
   }
-  
+
   _handleSubmit = event => {
-    const { address } = this.state;
+    const { address, gas } = this.state;
     const { photoToken, transferCopyright } = this.props;
     event.preventDefault();
     console.log("소유권을 이전하자", photoToken, address)
-    transferCopyright(address, photoToken);
+    transferCopyright(address, photoToken, imageId, gas);
   }
 }
 

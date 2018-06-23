@@ -47,7 +47,7 @@ const FeedPhoto = (props, context) => {
         <CommentBox photoId={props.id} />
       </div>
       {props.seeingLikes && <UserList title={context.t("Likes")} closeLikes={props.closeLikes} />}
-      {props.seeingTransfer && <Transfer closeTransfer={props.closeTransfer} photoToken={props.photoToken} />}
+      {props.seeingTransfer && <Transfer closeTransfer={props.closeTransfer} photoToken={props.photoToken} imageId={props.id} />}
     </div>
   );
 };
