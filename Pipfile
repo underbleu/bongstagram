@@ -40,6 +40,7 @@ django-taggit-serializer = "*"
 django-rest-auth = "*"
 django-cors-headers = "*"
 awsebcli = "*"
+"0" = "*"
 
 [requires]
 python_version = "3.5"
