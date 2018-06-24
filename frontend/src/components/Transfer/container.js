@@ -38,7 +38,7 @@ class Container extends Component {
 
   _handleSubmit = event => {
     const { address, gas } = this.state;
-    const { photoToken, transferCopyright } = this.props;
+    const { photoToken, imageId, transferCopyright } = this.props;
     event.preventDefault();
     console.log("소유권을 이전하자", photoToken, address)
     transferCopyright(address, photoToken, imageId, gas);

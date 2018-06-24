@@ -19,8 +19,6 @@ class Image(TimeStampedModel):
     file = models.ImageField()
     location = models.CharField(max_length=140)
     caption = models.TextField()
-    photoToken = models.CharField(max_length=500, default='pending')
-    txHash = models.CharField(max_length=500, default='pending')
     creator = models.ForeignKey(
         user_models.User, # Create relationship between User and Image
         related_name='images', # Create backward relationship to User
@@ -28,6 +26,13 @@ class Image(TimeStampedModel):
         on_delete=models.CASCADE # required in Django 2.0
     )
     tags = TaggableManager()
+    txHash = models.CharField(max_length=500, default='pending')
+    photoToken = models.CharField(max_length=500, default='pending')
+    copyrightIssue = models.CharField(max_length=500, default='pending')
+    originalOwner = models.CharField(max_length=500, default='pending')
+    prevOwner = models.CharField(max_length=500, default='pending')
+    currentOwner = models.CharField(max_length=500, default='pending')
+    
     
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)

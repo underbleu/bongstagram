@@ -13,7 +13,7 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
   return {
     transferCopyright: (address, photoToken, imageId, gas) => {
       dispatch(tokenActions.transferCopyright(address, photoToken, imageId, gas))
-    };
+    }
   };
 };
 

@@ -11,44 +11,38 @@ import Web3 from "web3";
 const web3 = window.web3;
 const MyContract = web3.eth.contract(abiArray.abi);
 const contractInstance = MyContract.at(
-  "0x71b0eff316717a42bde1050c2e371debbfe74dcb"
+  "0x2c6c398c04a112a17ce9e71dc7897425f514c877"
 ); // -> 디플로이된 CopyrightToken의 컨트랙트 주소
 
 // web3 1.0
 const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://13.125.208.193:8546'));
-const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x71b0eff316717a42bde1050c2e371debbfe74dcb");
-
-const dispatchSaveImageToken = (imageId, photoToken) => store.dispatch(saveImageToken(imageId, photoToken));
-
-MyContract2.events
-  .GenerateToken((err, event) => { if(err) console.log(err) })
-  .on('data', function(event){
-    console.log(event, 'from GenerateToken Event!')
-    const imageId = event.returnValues._imageId;
-    const photoToken = event.returnValues._tokenId;
-    dispatchSaveImageToken(imageId, photoToken);
-  })
-  .on('error', function(error){
-    console.log(error)
-  });
-
-// contractInstance.totalSupply.call({}, (err, tokenLength) => {
-//   console.log("토큰몇개", web3.toDecimal(tokenLength));
-// });
+// const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:8546'));
+const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x2c6c398c04a112a17ce9e71dc7897425f514c877");
 
 MyContract2.methods.totalSupply().call().then(data => console.log('token count' + data))
+
+MyContract2.events
+  .GenerateToken((err, event) => {if(err) console.log("GenerateToken event error.1", err)})
+  .on('data', function(event){
+    console.log("GenerateToken event", event);
+    const imageId = event.returnValues._imageId;
+    const photoToken = event.returnValues._tokenId;
+    const originalOwner = event.returnValues._originalOwner;
+    const currentOwner = event.returnValues._originalOwner;
+    const copyrightIssue = event.returnValues._issueDate;
+    const txData = [ {photoToken}, {originalOwner}, {currentOwner}, {copyrightIssue} ];
+    store.dispatch(saveTxData(imageId, txData));
+  })
+  .on('error', function(error){
+    console.log("GenerateToken event error.2", error)
+  });
+
 
 // contractInstance.getCopyrightInfo.call(65, (err, data) => {
 //   data[0] = web3.toDecimal(data[0]);
 //   data[2] = web3.toDecimal(data[2]);
 //   console.log("맞는가요",data);
 // });
-
-/* this.ContractInstance.events.PurchaseMade({}, (error, data) => {
-  if (error) console.log("Error: " + error);
-  else console.log("Log data: " + data);
-}); */
-
 
 // actions
 
@@ -107,6 +101,7 @@ function getFeed() {
         return response.json();
       })
       .then(json => {
+        console.log("getFeed에서 뭘로들어오니", json)
         dispatch(setFeed(json));
       });
   };
@@ -201,19 +196,22 @@ function uploadPhoto(file, location, caption) {
     .then(json => {
       const imageId = json.id;
       contractInstance.mint.sendTransaction(
-        imageId,  // _imageId
-        `http://localhost:8000${json.file}`,  // _photoURL
-        { from: getState().token.walletAddress },
-        (err, txHash) => err ? console.log(err) : dispatch(saveTxHash(imageId, txHash)));
+        imageId, `http://localhost:8000${json.file}`,  // _photoURL
+        { from: getState().token.walletAddress }, // Transaction Object
+        (err, txHash) => 
+          err ?
+          console.log("mint error", err) :
+          dispatch(saveTxData(imageId, [{txHash}] )));
     })
     .catch(err => console.log(err))
   };
 }
 
-function saveTxHash(imageId, txHash) {
-  console.log("들어오너라",txHash);
+function saveTxData(imageId, txData) {
   const data = new FormData();
-  data.append("txHash", txHash);
+  txData.map(t => {
+    const key = Object.keys(t)[0];
+    data.append(key, t[key]) });
 
   return (dispatch, getState) => {
     const { user: { token } } = getState();
@@ -227,55 +225,11 @@ function saveTxHash(imageId, txHash) {
       .then(response => {
         if (response.status === 401) dispatch(userActions.logout());
       })
-      .then(console.log("txHash saved !"))
+      .then(console.log(`txData saved !`))
       .catch(err => console.log(err));
   };
 }
 
-function saveImageToken(imageId, photoToken) {
-  const data = new FormData();
-  data.append("photoToken", photoToken)
-
-  return (dispatch, getState) => {
-    const { user: { token } } = getState();
-    return fetch(`/images/${imageId}/`, {
-      method: "PUT",
-      headers: {
-        Authorization: `JWT ${token}`
-      },
-      body: data
-    })
-      .then(response => {
-          if (response.status === 401) dispatch(userActions.logout());
-        })
-      .then(console.log("photoToken saved !"))
-      .catch(err => console.log(err));
-  };
-}
-
-    // contractInstance.totalSupply.call({}, (err, tokenLength) => {
-          //   console.log("토큰몇개", web3.toDecimal(tokenLength));
-          //   const tokenId = web3.toDecimal(tokenLength) - 1;
-          //   console.log("아이디뭐", tokenId)
-          //   contractInstance.getCopyrightInfo.call(tokenId, (err, data) => {
-          //     data[0] = web3.toDecimal(data[0]);
-          //     data[2] = web3.toDecimal(data[2]);
-          //     console.log(data)
-          //   })
-          // })
-          
-    //   contractInstance.mint.sendTransaction(
-    //     `http://localhost:8000${json.file}`, 
-    //     { from: getState().token.walletAddress },
-    //     (err, txHash) => contractInstance.totalSupply.call({}, (err, tokenLength) => {
-    //       tokenId = web3.toDecimal(tokenLength) - 1;
-    //       contractInstance.getCopyrightInfo.call(tokenId, (err, data) => {
-    //         data[0] = web3.toDecimal(data[0])
-    //         data[2] = web3.toDecimal(data[2])
-    //         console.log("데이터?", data)
-    //       });
-    //     }
-    // })
 // initial state
 
 const initialState = { };
@@ -360,7 +314,8 @@ const actionCreators = {
   likePhoto,
   unlikePhoto,
   commentPhoto,
-  uploadPhoto
+  uploadPhoto,
+  saveTxData
 };
 
 export { actionCreators };

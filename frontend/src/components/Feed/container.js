@@ -32,6 +32,7 @@ class Container extends Component {
   
   render() {
     const { feed } = this.props;
+    console.log("컨테이너 피드있니", feed)
     return <Feed {...this.state} feed={feed} />;
   }
 }

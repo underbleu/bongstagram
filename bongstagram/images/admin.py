@@ -5,7 +5,7 @@ from . import models
 class ImageAdmin(admin.ModelAdmin):
     
     list_display_links = (
-        'location',
+        'file',
     )
     
     search_fields = (
@@ -21,12 +21,17 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'file',
-        'location',
-        'photoToken',
-        'caption',
         'creator',
         'created_at',
-        'updated_at',
+        'photoToken',
+        'txHash',
+        'copyrightIssue',
+        'originalOwner',
+        'prevOwner',
+        'currentOwner'
+        # 'updated_at',
+        # 'location',
+        # 'caption',
     )
 
 @admin.register(models.Comment)

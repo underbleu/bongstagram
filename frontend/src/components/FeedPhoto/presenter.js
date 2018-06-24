@@ -26,7 +26,14 @@ const FeedPhoto = (props, context) => {
       <div className={styles.imgBox}>
         <img src={props.file} alt={props.caption} />
         <div className={styles.copyright}>
-          <Copyright photoToken={props.photoToken} txHash={props.txHash} />
+          <Copyright
+            txHash={props.txHash}
+            photoToken={props.photoToken}
+            copyrightIssue={props.copyrightIssue}
+            originalOwner={props.originalOwner}
+            prevOwner={props.prevOwner}
+            currentOwner={props.currentOwner}
+          />
         </div>
       </div>
       <div className={styles.meta}>
@@ -54,8 +61,12 @@ const FeedPhoto = (props, context) => {
 
 FeedPhoto.propTypes = {
   id: PropTypes.number.isRequired,
-  // photoToken: PropTypes.number,
   txHash: PropTypes.string,
+  // photoToken: PropTypes.string,
+  // copyrightIssue: PropTypes.string,
+  // originalOwner: PropTypes.string,
+  // prevOwner: PropTypes.string,
+  // currentOwner: PropTypes.string,
   creator: PropTypes.shape({
     profile_image: PropTypes.string,
     username: PropTypes.string.isRequired

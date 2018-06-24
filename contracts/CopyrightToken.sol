@@ -97,7 +97,7 @@ contract CopyrightToken {
         emit Approval(msg.sender, _to, _tokenId);
     }
 
-    function takeOwnership(uint256 _tokenId) public {
+    function takeOwnership(uint256 _tokenId, uint _imageId) public {
         require(tokenExists[_tokenId]);
 
         address oldOwner = ownerOf(_tokenId);
@@ -111,7 +111,7 @@ contract CopyrightToken {
 
         copyrightCounts[newOwner] += 1;
 
-        emit Transfer(oldOwner, newOwner, _tokenId);
+        emit Transfer(oldOwner, newOwner, _tokenId, _imageId);
     }
 
     function transfer(address _to, uint256 _tokenId, uint _imageId) public {
