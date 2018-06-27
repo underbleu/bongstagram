@@ -29,7 +29,7 @@
     max-width: $max-card-width;
     .header {
       display: flex;
-      padding: 14px 0;
+      padding: 14px 12px;
       justify-content: center;
       align-items: center;
       border-bottom: 2px solid $light-grey;
@@ -45,13 +45,86 @@
       }
     }
     .content {
-      min-height: 300px;
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
+      padding: 40px 50px;
+      .file {
+        float: left;
+        width: 150px;
+        height: 150px;
+        background-color: yellow;
+        border: 2px dotted #3897f0;
+        margin-right: 40px;
+      }
+      .input {
+        float: left;
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 190px);
+        .location {
+          margin-bottom: 6px;
+        }
+        .caption {
+          height: calc(150px - 41px);
+        }
+        .location, .caption {
+          background-color: $bg-color;
+          border: 1px solid $input-border-color;
+          padding: 9px 0 7px 8px;
+          &::placeholder {
+            font-size: $small-font-size;
+            color: $dark-grey;
+          }
+        }
+      }
       .button {
         @include blueButton();
       }
+    }
+  }
+}
+
+.filebox {
+  position: relative;
+  float: left;
+  width: 150px;
+  height: 150px;
+  border: 2px dotted #3897f0;
+  padding-top: 30px;
+  margin-right: 40px;
+  text-align: center;
+  .hidden { 
+    position: absolute;
+    width: 1px; height: 1px; 
+    padding: 0; margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0; 
+  } 
+  .cloud {
+    text-align: center;
+    img {
+      width: 85px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -70%);
+    }
+  }
+  .name {
+    width: 120px;
+    font-weight: 600;
+    color: $dark-grey;
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  &:hover {
+    .cloud img {
+      opacity: .7;
+    }
+    .name {
+      color: #bcbcbc;
     }
   }
 }

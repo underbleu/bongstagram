@@ -4,8 +4,8 @@ import { actionCreators as photoActions } from "redux/modules/photos";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    uploadPhoto: (file, location, caption) => {
-      dispatch(photoActions.uploadPhoto(file, location, caption));
+    uploadPhoto: (file, location, caption, gasPrice) => {
+      dispatch(photoActions.uploadPhoto(file, location, caption, gasPrice));
     }
   };
 };

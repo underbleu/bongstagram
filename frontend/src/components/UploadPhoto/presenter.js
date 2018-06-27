@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Textarea from "react-textarea-autosize";
 import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
-
+import GasPrice from "components/GasPrice";
 
 const UploadPhoto = (props, context) => (
   <div>
@@ -13,7 +13,7 @@ const UploadPhoto = (props, context) => (
     {props.seeingUpload && <UploadDisplay title={"Upload Photo"} {...props} />}
   </div>
 );
-  
+
 const UploadDisplay = props => (
   <div className={styles.container}>
     <div className={styles.box}>
@@ -24,37 +24,65 @@ const UploadDisplay = props => (
         </span>
       </header>
       <form className={styles.content} onSubmit={props.handleSubmit}>
-        <input
+        {/* <input
           type="file"
           name="file"
           onChange={props.handleFileChange}
           placeholder="Upload your memories"
           className={styles.file}
           required="true"
+        /> */}
+        <File handleFileChange={props.handleFileChange} fileName={props.fileName}/>
+        <div className={styles.input}>
+          <input
+            type="text"
+            name="location"
+            value={props.location}
+            onChange={props.handleInputChange}
+            placeholder="Where did you take this photo ?"
+            className={styles.location}
+            required="true"
+          />
+          <textarea
+            type="text"
+            name="caption"
+            value={props.caption}
+            onChange={props.handleInputChange}
+            placeholder="Upload your memories"
+            className={styles.caption}
+            required="true"
+          />
+        </div>
+        <GasPrice
+          gas={props.gas}
+          dollar={props.dollar}
+          handleInputChange={props.handleInputChange}
+          className={styles.gas}
         />
-        <input
-          type="text"
-          name="location"
-          value={props.location}
-          onChange={props.handleInputChange}
-          placeholder="Where did you take this photo ?"
-          className={styles.location}
-          required="true"
-        />
-        <Textarea
-          type="text"
-          name="caption"
-          value={props.caption}
-          onChange={props.handleInputChange}
-          placeholder="Upload your memories"
-          className={styles.caption}
-          required="true"
-        />
+
         <div className={styles.buttonBox}>
           <input type="submit" value="Upload" className={styles.button} />
         </div>
       </form>
     </div>
+  </div>
+);
+
+const File = props => (
+  <div className={styles.filebox}>
+  {console.log("dudld", props.handleFileChange)}
+    <input
+      id="upload"
+      type="file"
+      name="file"
+      onChange={props.handleFileChange}
+      className={styles.hidden}
+      required="true"
+    />
+    <label htmlFor="upload" className={styles.cloud}>
+      <img src={require("./upload.png")} alt="upload button" />
+    </label>
+    <p className={styles.name}>{props.fileName}</p>
   </div>
 );
 

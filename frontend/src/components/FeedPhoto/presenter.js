@@ -29,10 +29,6 @@ const FeedPhoto = (props, context) => {
           <Copyright
             txHash={props.txHash}
             photoToken={props.photoToken}
-            copyrightIssue={props.copyrightIssue}
-            originalOwner={props.originalOwner}
-            prevOwner={props.prevOwner}
-            currentOwner={props.currentOwner}
           />
         </div>
       </div>
@@ -63,10 +59,6 @@ FeedPhoto.propTypes = {
   id: PropTypes.number.isRequired,
   txHash: PropTypes.string,
   // photoToken: PropTypes.string,
-  // copyrightIssue: PropTypes.string,
-  // originalOwner: PropTypes.string,
-  // prevOwner: PropTypes.string,
-  // currentOwner: PropTypes.string,
   creator: PropTypes.shape({
     profile_image: PropTypes.string,
     username: PropTypes.string.isRequired

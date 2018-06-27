@@ -11,15 +11,15 @@ import Web3 from "web3";
 const web3 = window.web3;
 const MyContract = web3.eth.contract(abiArray.abi);
 const contractInstance = MyContract.at(
-  "0x2c6c398c04a112a17ce9e71dc7897425f514c877"
+  "0x2c51622a9c9e6f9dd4c3660767dd1cb009649118"
 ); // -> 디플로이된 CopyrightToken의 컨트랙트 주소
 
 // web3 1.0
 const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://13.125.208.193:8546'));
 // const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:8546'));
-const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x2c6c398c04a112a17ce9e71dc7897425f514c877");
+const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x2c51622a9c9e6f9dd4c3660767dd1cb009649118");
 
-MyContract2.methods.totalSupply().call().then(data => console.log('token count' + data))
+MyContract2.methods.totalSupply().call().then(data => console.log('token count' + data));
 
 MyContract2.events
   .GenerateToken((err, event) => {if(err) console.log("GenerateToken event error.1", err)})
@@ -27,15 +27,13 @@ MyContract2.events
     console.log("GenerateToken event", event);
     const imageId = event.returnValues._imageId;
     const photoToken = event.returnValues._tokenId;
-    const originalOwner = event.returnValues._originalOwner;
-    const currentOwner = event.returnValues._originalOwner;
-    const copyrightIssue = event.returnValues._issueDate;
-    const txData = [ {photoToken}, {originalOwner}, {currentOwner}, {copyrightIssue} ];
-    store.dispatch(saveTxData(imageId, txData));
+    store.dispatch(saveTxData(imageId, "photoToken", photoToken));
+    store.dispatch(getFeed());
   })
   .on('error', function(error){
     console.log("GenerateToken event error.2", error)
   });
+
 
 
 // contractInstance.getCopyrightInfo.call(65, (err, data) => {
@@ -170,48 +168,41 @@ function commentPhoto(photoId, message) {
   };
 }
 
-function uploadPhoto(file, location, caption) {
+function uploadPhoto(file, location, caption, gasPrice) {
   const data = new FormData();
   data.append("caption", caption);
   data.append("location", location);
   data.append("file", file);
   return (dispatch, getState) => {
     const { user: { token } } = getState();
-    return fetch(`/images/`, {
-      method: "POST",
-      headers: {
-        Authorization: `JWT ${token}`,
-      },
-      body: data
-    })
-    .then(response => {
-      console.log(response.status)
-      if (response.status === 401) {
-        dispatch(userActions.logout());
-      } else if (response.ok) {
-        dispatch(getFeed());
-      }
-      return response.json();
-    })
-    .then(json => {
-      const imageId = json.id;
-      contractInstance.mint.sendTransaction(
-        imageId, `http://localhost:8000${json.file}`,  // _photoURL
-        { from: getState().token.walletAddress }, // Transaction Object
-        (err, txHash) => 
-          err ?
-          console.log("mint error", err) :
-          dispatch(saveTxData(imageId, [{txHash}] )));
-    })
-    .catch(err => console.log(err))
+    return Promise.all([
+      Promise.resolve(gasPrice), 
+      fetch(`/images/`, {
+        method: "POST",
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+        body: data })])
+      .then(([gasPrice, response]) => {
+        if (response.status === 401)  dispatch(userActions.logout());
+        response.json()
+          .then(({ file, id }) => {
+            contractInstance.mint.sendTransaction(
+              id, `http://localhost:8000${file}`,  // _photoURL
+              { from: getState().token.walletAddress, gasPrice }, // Transaction Object
+              (err, txHash) => 
+                err ?
+                console.log("mint error", err) :
+                dispatch(saveTxData(id, "txHash", txHash)));
+          })
+      })
+      .catch(err => console.log(err))
   };
 }
 
-function saveTxData(imageId, txData) {
+function saveTxData(imageId, name, txData) {
   const data = new FormData();
-  txData.map(t => {
-    const key = Object.keys(t)[0];
-    data.append(key, t[key]) });
+  data.append(name, txData);
 
   return (dispatch, getState) => {
     const { user: { token } } = getState();
@@ -225,7 +216,7 @@ function saveTxData(imageId, txData) {
       .then(response => {
         if (response.status === 401) dispatch(userActions.logout());
       })
-      .then(console.log(`txData saved !`))
+      .then(console.log(`${name} saved ! (${txData})`))
       .catch(err => console.log(err));
   };
 }

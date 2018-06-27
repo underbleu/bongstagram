@@ -2,6 +2,7 @@
 import store from "redux/configureStore";
 import { actionCreators as photoActions } from "redux/modules/photos";
 
+
 // Web3
 import abiArray from "build/contracts/CopyrightToken.json";
 import Web3 from "web3";
@@ -10,14 +11,17 @@ import Web3 from "web3";
 const web3 = window.web3;
 const MyContract = web3.eth.contract(abiArray.abi);
 const contractInstance = MyContract.at(
-  "0x2c6c398c04a112a17ce9e71dc7897425f514c877"
+  "0x2c51622a9c9e6f9dd4c3660767dd1cb009649118"
 ); // -> 디플로이된 CopyrightToken의 컨트랙트 주소
 
 // web3 1.0
 // const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:8546'));
 const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://13.125.208.193:8546'));
-const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x2c6c398c04a112a17ce9e71dc7897425f514c877");
+const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x2c51622a9c9e6f9dd4c3660767dd1cb009649118");
 
+function getCopyrightInfo(photoToken) {
+  return MyContract2.methods.getCopyrightInfo(photoToken).call();
+}
 
 // action
 const WALLET_LOADING = "WALLET_LOADING";
@@ -27,13 +31,16 @@ const WALLET_LOADING = "WALLET_LOADING";
 function transferCopyright(address, photoToken, imageId, gas) {
   contractInstance.transfer.sendTransaction(
     address, photoToken, imageId,
-    { from: store.getState().token.walletAddress, gas: `${gas}` },
-    (err, txHash) => err ? console.log(err) : store.dispatch(photoActions.saveTxHash(imageId, txHash))
+    { from: store.getState().token.walletAddress, gasPrice: `${gas}` }, 
+    (err, txHash) => {
+      err ? console.log(err) : store.dispatch(photoActions.saveTxData(imageId, "txHash", txHash));
+      console.log("소유권이전 후", getCopyrightInfo(photoToken));
+    }
   )
 }
 
 MyContract2.events
-  .Transfer((err, event) => { if(err) console.log(err) })
+  .Transfer((err, event) => { console.log("트렌스퍼 이벤트", event, err) })
   .on('data', function(event){
     console.log(event, 'from Transfer Event!')
     const from = event.returnValues._from;
@@ -90,7 +97,8 @@ function applyWalletLoading(state, action) {
 // export
 const actionCreators = {
   getWallet,
-  transferCopyright
+  transferCopyright,
+  getCopyrightInfo
 }
 
 export { actionCreators }

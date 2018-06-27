@@ -5,7 +5,7 @@ import styles from "./styles.scss";
 const PhotoComments = props => (
   <div className={styles.comments}>
     <ul className={styles.list}>
-      <Comment username={props.creator.username} comment={props.caption} />
+      <Comment username={props.creator} comment={props.caption} />
       {props.comments.map(comment => {
         return <Comment
           username={comment.creator.username}

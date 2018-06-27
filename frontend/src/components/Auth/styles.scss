@@ -1,5 +1,6 @@
 .auth {
   width: 100%;
+  margin-top: 80px;
   .wrapper {
     max-width: $max-page-width;
     width: 100%;
@@ -42,7 +43,7 @@
           position: relative;
           width: 220px;
           height: 51px;
-          margin: 22px auto 12px;
+          margin: 40px auto 25px;
           &:after {
             content: "";
             position: absolute;

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
+import GasPrice from "components/GasPrice";
 
 const Transfer = props => (
   <div className={styles.container}>
@@ -28,15 +29,8 @@ const Transfer = props => (
           className={styles.textInput}
           required="true"
         />
-        <input
-          type="text"
-          name="gas"
-          value={props.gasValue}
-          onChange={props.handleInputChange}
-          placeholder="Gas?"
-          className={styles.textInput}
-          required="true"
-        />
+        {console.log(props.gasValue,"여긴")}
+        <GasPrice gas={props.gasValue} handleInputChange={props.handleInputChange} />
         <div className={styles.buttonBox}>
           <input
             type="submit"
