@@ -16,6 +16,7 @@ contract CopyrightToken {
 
     Copyright[] copyrights;
 
+    mapping(uint => address) internal prevTokenOwners;
     mapping(uint => address) internal tokenOwners;
     mapping(uint => bool) internal tokenExists;
     mapping(address => uint) internal copyrightCounts; // How many copyrights _id has
@@ -39,7 +40,8 @@ contract CopyrightToken {
         });
 
         copyrights.push(_copyright);
-
+        
+        prevTokenOwners[_tokenId] = address(0);
         tokenOwners[_tokenId] = msg.sender;
         tokenExists[_tokenId] = true;
         copyrightCounts[msg.sender] += 1;
@@ -62,8 +64,8 @@ contract CopyrightToken {
         photoURL = c.photoURL;
         issueDate = c.issueDate;
         originalOwner = c.originalOwner;
-        oldOwner = c.oldOwner;
-        newOwner = c.newOwner;
+        oldOwner = prevTokenOwners[_tokenId];
+        newOwner = tokenOwners[_tokenId];
     }
 
 
@@ -107,6 +109,7 @@ contract CopyrightToken {
 
         require(allowed[oldOwner][newOwner] == _tokenId);
         copyrightCounts[oldOwner] -= 1;
+        prevTokenOwners[_tokenId] = oldOwner;
         tokenOwners[_tokenId] = newOwner;
 
         copyrightCounts[newOwner] += 1;
@@ -125,6 +128,7 @@ contract CopyrightToken {
         require(newOwner != address(0));
 
         copyrightCounts[oldOwner] -= 1;
+        prevTokenOwners[_tokenId] = oldOwner;
         tokenOwners[_tokenId] = newOwner;
 
         copyrightCounts[newOwner] += 1;
