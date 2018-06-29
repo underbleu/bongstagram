@@ -14,23 +14,35 @@ const Transfer = props => (
         </span>
       </header>
       <form className={styles.form} onSubmit={props.handleSubmit}>
-        <div>
+        <div className={styles.copyright}>
           <span>Copyright No.</span> {props.photoToken}
         </div>
-        <div>
-          <span>FROM.</span> {props.walletAddress}
+        <div className={styles.from}>
+          <span>FROM.</span>
+          <input
+            type="text"
+            name="from"
+            placeholder={props.walletAddress}
+            className={styles.textInput}
+            disabled
+          />
         </div>
-        <input
-          type="text"
-          name="address"
-          value={props.addressValue}
-          onChange={props.handleInputChange}
-          placeholder="Who do you want to transfer your Copyright?"
-          className={styles.textInput}
-          required="true"
+        <div className={styles.to}>
+          <span>TO.</span>
+          <input
+            type="text"
+            name="address"
+            value={props.addressValue}
+            onChange={props.handleInputChange}
+            placeholder="Transfer copyright to..."
+            className={styles.textInput}
+            required="true"
+          />
+        </div>
+        <GasPrice
+          gas={props.gasValue}
+          handleInputChange={props.handleInputChange}
         />
-        {console.log(props.gasValue,"여긴")}
-        <GasPrice gas={props.gasValue} handleInputChange={props.handleInputChange} />
         <div className={styles.buttonBox}>
           <input
             type="submit"

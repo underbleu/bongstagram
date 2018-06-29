@@ -20,18 +20,11 @@ class ImageAdmin(admin.ModelAdmin):
     
     list_display = (
         'id',
-        'file',
-        'creator',
-        'created_at',
         'photoToken',
         'txHash',
-        'copyrightIssue',
-        'originalOwner',
-        'prevOwner',
-        'currentOwner'
-        # 'updated_at',
-        # 'location',
-        # 'caption',
+        'creator',
+        'file',
+        'created_at',
     )
 
 @admin.register(models.Comment)

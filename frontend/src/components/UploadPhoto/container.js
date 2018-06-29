@@ -10,8 +10,7 @@ class Container extends Component {
     fileName: "Choose a photo to upload...",
     location: "",
     caption: "",
-    gas: "5",
-    dollar: "0.045",
+    gas: 50,
     seeingUpload: false
   }
   
@@ -26,6 +25,7 @@ class Container extends Component {
         handleInputChange={this._handleInputChange}
         handleFileChange={this._handleFileChange}
         handleSubmit={this._handleSubmit}
+        handleGasCha
         openUpload={this._openUpload}
         closeUpload={this._closeUpload}
       />
@@ -58,7 +58,6 @@ class Container extends Component {
       location: "",
       caption: "",
       gas: "5",
-      dollar: gas * 0.009,
       seeingUpload: false
     });
   }

@@ -37,6 +37,16 @@ import { actionCreators as tokenActions } from "redux/modules/token";
 
 store.dispatch(tokenActions.getWallet());
 
+// setInterval(function(){
+//   web3.eth.getAccounts((err, data) => {
+//     if(err) console.log(err);
+//     if(data[0] !== store.getState().token.walletAddress){
+//       store.dispatch(tokenActions.setWallet(data[0]));
+//     }
+//     console.log("ss", data[0], store.getState().token.walletAddress);
+//   })
+// }, 1000);
+
 ReactDOM.render(
   <Provider store={store}>
     <I18n translations={translations} initialLang="en" fallbackLang="en">

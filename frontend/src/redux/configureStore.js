@@ -15,10 +15,10 @@ const history = createHistory();
 
 const middlewares = [thunk, routerMiddleware(history)]; // history와 싱크시키기
 
-if(env === "development"){
-  const { logger } = require("redux-logger");
-  middlewares.push(logger)
-}
+// if(env === "development"){
+//   const { logger } = require("redux-logger");
+//   middlewares.push(logger)
+// }
 
 const reducer = combineReducers({
   user,

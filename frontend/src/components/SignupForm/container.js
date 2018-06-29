@@ -19,7 +19,6 @@ class Container extends Component {
   
   render() {
     const { email, name, username, password, walletAddress } = this.state;
-    console.log(this.props.walletAddress);
     return (
       <SignupForm 
         walletAddressValue={walletAddress}

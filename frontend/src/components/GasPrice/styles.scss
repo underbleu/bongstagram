@@ -1,5 +1,6 @@
 .container {
   clear: both;
+  margin-bottom: 35px;
   
   .header {
     padding: 35px 0 15px 0;
@@ -9,8 +10,102 @@
       margin: 0 0 -3px 5px;
     }
   }
+  .info {
+    padding-top: 25px;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .price {
+      font-weight: 600;
+      .gwei {
+        color: $dark-grey;
+        font-size: 16px;
+        margin-bottom: 7px;
+      }
+      .dollar {
+        color: $light-blue;
+        font-size: 30px;
+      }
+    }
+    .speed {
+      color: $light-blue;
+      font-size: 30px;
+      font-weight: 600;
+    }
+  }
   
-  
-  
+  .slider {
+    clear: both;
+    position: relative;
+    outline: none;
+     &:active {
+      .speedBox .speedometer {
+        display: block;
+      }
+    }
+    .speedBox {
+      position: relative;
+      width: 95.5%;
+      margin: 0 auto;
+      .speedometer {
+        display: none;
+        position: absolute;
+        top: -60px;
+        left: 0%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        box-shadow: 1px 3px 5px rgba(0,0,0,.1);
+        .pointer {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform-origin: 50% 43%;
+          transition: all 500ms cubic-bezier(.84,.42,.78,1.37);
+        }
+      }
+    }
+
+    .range {
+      width: 100%;
+      margin: 0;
+      -webkit-appearance: none;
+      background: transparent; 
+      cursor: pointer;
+      
+      &:focus {
+        outline: none;
+      }
+      
+      &::-webkit-slider-runnable-track {
+        background: #eee; 
+        border-radius: 3px;
+        height: 12px;
+      }
+      
+      &::-webkit-slider-thumb { 
+        -webkit-appearance: none;
+        width: 22px;
+        height: 22px;
+        border: 4px solid $light-blue;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+        margin-top: -4px;
+      }
+      // &::-moz-range-thumb { background: red !important; border: 3px solid red;}
+      // &::-ms-thumb { background: red !important; border: 3px solid red;}
+    }
+  }
 }
 
+
+// {
+//       position: absolute;
+//     top: 0;
+//     left: 0;
+//     transform: rotate(40deg);
+//     transform-origin: 50% 43%;
+// }

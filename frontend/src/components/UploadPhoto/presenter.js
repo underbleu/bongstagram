@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Textarea from "react-textarea-autosize";
 import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
 import GasPrice from "components/GasPrice";
@@ -8,7 +7,7 @@ import GasPrice from "components/GasPrice";
 const UploadPhoto = (props, context) => (
   <div>
     <div className={styles.UploadButton} onClick={props.openUpload}>
-      <Ionicon icon="logo-instagram" fontSize="32px" color="white" />;
+      <Ionicon icon="logo-instagram" fontSize="34px" color="white" />
     </div>
     {props.seeingUpload && <UploadDisplay title={"Upload Photo"} {...props} />}
   </div>
@@ -24,14 +23,6 @@ const UploadDisplay = props => (
         </span>
       </header>
       <form className={styles.content} onSubmit={props.handleSubmit}>
-        {/* <input
-          type="file"
-          name="file"
-          onChange={props.handleFileChange}
-          placeholder="Upload your memories"
-          className={styles.file}
-          required="true"
-        /> */}
         <File handleFileChange={props.handleFileChange} fileName={props.fileName}/>
         <div className={styles.input}>
           <input
@@ -59,7 +50,6 @@ const UploadDisplay = props => (
           handleInputChange={props.handleInputChange}
           className={styles.gas}
         />
-
         <div className={styles.buttonBox}>
           <input type="submit" value="Upload" className={styles.button} />
         </div>
@@ -70,7 +60,6 @@ const UploadDisplay = props => (
 
 const File = props => (
   <div className={styles.filebox}>
-  {console.log("dudld", props.handleFileChange)}
     <input
       id="upload"
       type="file"

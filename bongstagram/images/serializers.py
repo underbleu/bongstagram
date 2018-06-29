@@ -80,10 +80,7 @@ class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
             'is_liked',
             'txHash',
             'photoToken',
-            'copyrightIssue',
-            'originalOwner',
-            'prevOwner',
-            'currentOwner'
+            
         )
         
     def get_is_liked(self, obj):
@@ -108,8 +105,4 @@ class InputImageSerializer(serializers.ModelSerializer):
             'caption',
             'txHash',
             'photoToken',
-            'copyrightIssue',
-            'originalOwner',
-            'prevOwner',
-            'currentOwner'
         )

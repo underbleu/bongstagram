@@ -18,7 +18,7 @@ const PhotoActions = (props, context) => (
       </span>
       {props.username === props.creator && (
         <span className={styles.transfer} onClick={props.openTransfer}>
-          <Ionicon icon="md-paper-plane" fontSize="28px" color="orange" />
+          <Ionicon icon="md-paper-plane" fontSize="28px" color="#bababa" />
         </span>
       )}
     </div>

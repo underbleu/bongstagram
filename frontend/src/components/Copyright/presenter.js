@@ -13,12 +13,23 @@ const Copyright = props => (
 
 const CopyrightDisplay = props => (
   <div className={styles.info}>
-    <div className={styles.txHash}>트랜젝션 영수증 링크 {props.txHash}</div>
     <div className={styles.photoToken}>copyright No. {props.photoToken}</div>
-    <div className={styles.copyrightIssue}>{`Copyright Issue. ${props.issueDate}`}</div>
-    <div className={styles.originalOwner}>{`Original Owner. ${props.originOwner}`}</div>
-    <div className={styles.prevOwner}>{!!Number(props.oldOwner) && (`Previous owner. ${props.oldOwner}`)}</div>
-    <div className={styles.currentOwner}>{`Current Owner. ${props.newOwner}`}</div>
+    {/* <div className={styles.txHash}>{props.txHash}</div> */}
+    <div className={styles.tx}>
+      <span>Issue Date</span> {props.issueDate}
+    </div>
+    <div className={styles.tx}>
+      <span>Original Owner</span>
+      {props.originOwner}
+    </div>
+    <div className={styles.tx}>
+      <span>Previous Owner</span>
+      {!!Number(props.oldOwner) && `${props.oldOwner}`}
+    </div>
+    <div className={styles.tx}>
+      <span>Current Owner</span>
+      {props.newOwner}
+    </div>
   </div>
 );
 

@@ -13,6 +13,7 @@
     @include borderBox(no);
     width: 100%;
     max-width: $max-card-width;
+    padding: 10px 0 0 0;
     .header {
       display: flex;
       padding: 14px 16px;
@@ -33,6 +34,25 @@
     .form {
       display: flex;
       flex-direction: column;
+      padding: 40px 50px;
+      .copyright {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+      .from, .to {
+        display: flex;
+        align-items: center;
+        span {
+          font-weight: 600;
+          display: block;
+          width: 100px;
+        }
+        input {
+          width: 100%;
+          margin: 0 0 6px;
+        }
+      }
       .text-input {
         background-color: $bg-color;
         border: 1px solid $input-border-color;

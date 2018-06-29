@@ -11,20 +11,20 @@ import Web3 from "web3";
 const web3 = window.web3;
 const MyContract = web3.eth.contract(abiArray.abi);
 const contractInstance = MyContract.at(
-  "0x2c51622a9c9e6f9dd4c3660767dd1cb009649118"
+  "0x3ad9c826ed3ac7e2415b435b52203b748d56cd3f"
 ); // -> 디플로이된 CopyrightToken의 컨트랙트 주소
 
 // web3 1.0
-const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://13.125.208.193:8546'));
+const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://52.78.187.235:8546'));
 // const web3socket = window.web3socket = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:8546'));
-const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x2c51622a9c9e6f9dd4c3660767dd1cb009649118");
+const MyContract2 = window.MyContract2 = new web3socket.eth.Contract(abiArray.abi, "0x3ad9c826ed3ac7e2415b435b52203b748d56cd3f");
 
 MyContract2.methods.totalSupply().call().then(data => console.log('token count' + data));
 
 MyContract2.events
-  .GenerateToken((err, event) => {if(err) console.log("GenerateToken event error.1", err)})
+  .GenerateToken((err, event) => {if(err) console.log("GenerateToken event error", err)})
   .on('data', function(event){
-    console.log("GenerateToken event", event);
+    console.log("GenerateToken event");
     const imageId = event.returnValues._imageId;
     const photoToken = event.returnValues._tokenId;
     store.dispatch(saveTxData(imageId, "photoToken", photoToken));
@@ -99,7 +99,6 @@ function getFeed() {
         return response.json();
       })
       .then(json => {
-        console.log("getFeed에서 뭘로들어오니", json)
         dispatch(setFeed(json));
       });
   };
@@ -216,7 +215,7 @@ function saveTxData(imageId, name, txData) {
       .then(response => {
         if (response.status === 401) dispatch(userActions.logout());
       })
-      .then(console.log(`${name} saved ! (${txData})`))
+      .then(console.log(`${name} saved`))
       .catch(err => console.log(err));
   };
 }

@@ -28,10 +28,6 @@ class Image(TimeStampedModel):
     tags = TaggableManager()
     txHash = models.CharField(max_length=500, default='pending')
     photoToken = models.CharField(max_length=500, default='pending')
-    copyrightIssue = models.CharField(max_length=500, default='pending')
-    originalOwner = models.CharField(max_length=500, default='pending')
-    prevOwner = models.CharField(max_length=500, default='pending')
-    currentOwner = models.CharField(max_length=500, default='pending')
     
     
     def __str__(self):

@@ -250,7 +250,7 @@ function searchImages(token) {
 }
 
 /* 완성형코드
-function searchImages(token, searchTerm) {
+  function searchImages(token, searchTerm) {
   return fetch(`/images/search/?hashtags=${searchTerm}`, {
     headers: {
       Authorization: `JWT ${token}`,

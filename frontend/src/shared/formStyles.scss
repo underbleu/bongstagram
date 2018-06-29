@@ -10,6 +10,19 @@
   .form {
     display: flex;
     flex-direction: column;
+    
+    .wallet {
+      text-align: left;
+      margin: 0 40px 15px;
+      font-size: 11px;
+      color: #999;
+      svg {
+        width: 15px;
+        margin-bottom: -10px;
+        margin-right: 5px;
+      }
+    }
+    
     .text-input {
       background-color: $bg-color;
       border: 1px solid $input-border-color;

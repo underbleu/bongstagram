@@ -18,11 +18,31 @@
     height: 100%;
     padding: 50px;
     color: #fff;
-    font-size: 20px;
-    font-weight: 700;
     background-color: rgba(0, 0, 0, .5);
-    div {
-      margin: 0 5px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    .photoToken {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    // .txHash {
+    //   overflow: hidden;
+    //   opacity: .7;
+    //   font-size: 14px;
+    //   margin-bottom: 20px;
+    // }
+    .tx {
+      margin-bottom: 8px;
+      span {
+        display: block;
+        width: 125px;
+        float: left;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
     }
   }
 }

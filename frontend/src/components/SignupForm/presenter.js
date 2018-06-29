@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Ionicon from "react-ionicons";
 import FacebookLogin from "react-facebook-login";
 import formStyles from "shared/formStyles.scss";
 
@@ -29,6 +30,10 @@ const SignupForm = (props, context) => (
         className={formStyles.textInput}
         required="true"
       /> */}
+      <div className={formStyles.wallet}>
+        <Ionicon icon="md-mail-open" fontSize="28px" color="#999" />
+        {props.walletAddressValue ? props.walletAddressValue : "Login with MethMask !"}
+      </div>
       <input
         type="text"
         name="email"
