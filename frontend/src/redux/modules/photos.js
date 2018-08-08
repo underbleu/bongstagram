@@ -106,9 +106,9 @@ function getFeed() {
 
 function likePhoto(photoId) {
   return (dispatch, getState) => {
-    dispatch(doLikePhoto(photoId)); // optimistic update: 누르자마자 하트색칠 먼저 -> API call
+    dispatch(doLikePhoto(photoId)); // 1.optimistic update: 누르자마자 하트색칠 먼저 
     const { user: { token } } = getState();
-    fetch(`/images/${photoId}/likes/`, {
+    fetch(`/images/${photoId}/likes/`, { //2. API call
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`
@@ -117,7 +117,7 @@ function likePhoto(photoId) {
     .then(response => {
       if(response.status === 401){
         dispatch(userActions.logout())
-      } else if(!response.ok) {
+      } else if(!response.ok) { // 3. 이미 좋아요가 눌려있는 이미지라면. 취소 !
         dispatch(doUnlikePhoto(photoId))
       }
     })
