@@ -1,6 +1,6 @@
 alabaster==0.7.11
 argon2-cffi==18.1.0
-arrow==0.12.1
+arrow==0.15.1
 attrs==18.1.0
 awesome-slugify==1.6.5
 awsebcli==3.14.1
